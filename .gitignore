@@ -78,3 +78,8 @@ jboss/server/minimal/work/**/*
 
 *.DEPLOYED
 
+#=========================================================
+
+#Eget (for å unngå unødvendige filer)
+Servers/
+RemoteSystemsTempFiles/
