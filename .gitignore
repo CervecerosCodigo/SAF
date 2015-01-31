@@ -1,3 +1,4 @@
+#JAVA
 *.class
 
 # Mobile Tools for Java (J2ME)
@@ -10,3 +11,70 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+#=========================================================
+
+#ECLIPSE
+*.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+# Kan hende at vi trenger denne i tillegg for å beholde konfigurasjonen av prosjektet
+#.settings/
+.loadpath
+
+# Denne er minimum for å få lov til å importere prosjekter
+# Eclipse Core
+#.project
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# Grei å ha
+# CDT-specific
+.cproject
+
+# JDT-specific (Eclipse Java Development Tools)
+#.classpath
+
+# PDT-specific
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# TeXlipse plugin
+.texlipse
+
+#=========================================================
+
+#JBOSS
+jboss/server/all/deploy/project.ext
+jboss/server/default/deploy/project.ext
+jboss/server/minimal/deploy/project.ext
+jboss/server/all/log/*.log
+jboss/server/all/tmp/**/*
+jboss/server/all/data/**/*
+jboss/server/all/work/**/*
+jboss/server/default/log/*.log
+jboss/server/default/tmp/**/*
+jboss/server/default/data/**/*
+jboss/server/default/work/**/*
+jboss/server/minimal/log/*.log
+jboss/server/minimal/tmp/**/*
+jboss/server/minimal/data/**/*
+jboss/server/minimal/work/**/*
+
+# deployed package files #
+
+*.DEPLOYED
+
