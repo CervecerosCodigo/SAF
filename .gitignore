@@ -41,7 +41,7 @@ local.properties
 
 # Grei å ha
 # CDT-specific
-.cproject
+#.cproject
 
 # JDT-specific (Eclipse Java Development Tools)
 #.classpath
