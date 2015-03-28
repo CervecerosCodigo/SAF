@@ -1,5 +1,6 @@
 package com.cerveceroscodigo.spring.dao;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,16 +10,35 @@ import javax.persistence.Table;
 public class Person {
 
 	@Id
+	@Column(name="idperson")
 	private int idperson;
+	
+	@Column(name="firstname")
 	private String firstname;
+	
+	@Column(name="lastname")
 	private String lastname;
+	
+	@Column(name="address1")
 	private String address1;
+	
+	@Column(name="address2")
 	private String address2;
-	private String post_number;
+	
+	@Column(name="post_number")
+	private String postNumber;
+	
+	@Column(name="phone")
 	private String phone;
+	
+	@Column(name="email")
 	private String email;
+	
+	@Column(name="password")
 	private String password;
-	private int person_type;
+	
+	@Column(name="person_type")
+	private int personType;
 
 	
 	public Person(){
@@ -26,18 +46,18 @@ public class Person {
 	}
 	
 	public Person(String firstname, String lastname, String address1,
-			String address2, String post_number, String phone, String email,
-			String password, int person_type) {
+			String address2, String postNumber, String phone, String email,
+			String password, int personType) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.address1 = address1;
 		this.address2 = address2;
-		this.post_number = post_number;
+		this.postNumber = postNumber;
 		this.phone = phone;
 		this.email = email;
 		this.password = password;
-		this.person_type = person_type;
+		this.personType = personType;
 	}
 
 	public int getIdperson() {
@@ -80,12 +100,12 @@ public class Person {
 		this.address2 = address2;
 	}
 
-	public String getPost_number() {
-		return post_number;
+	public String getPostNumber() {
+		return postNumber;
 	}
 
-	public void setPost_number(String post_number) {
-		this.post_number = post_number;
+	public void setPostNumber(String postNumber) {
+		this.postNumber = postNumber;
 	}
 
 	public String getPhone() {
@@ -112,21 +132,21 @@ public class Person {
 		this.password = password;
 	}
 
-	public int getPerson_type() {
-		return person_type;
+	public int getPersonType() {
+		return personType;
 	}
 
-	public void setPerson_type(int person_type) {
-		this.person_type = person_type;
+	public void setPersonType(int personType) {
+		this.personType = personType;
 	}
 
 	@Override
 	public String toString() {
 		return "Person [idperson=" + idperson + ", firstname=" + firstname
 				+ ", lastname=" + lastname + ", address1=" + address1
-				+ ", address2=" + address2 + ", post_number=" + post_number
+				+ ", address2=" + address2 + ", post_number=" + postNumber
 				+ ", phone=" + phone + ", email=" + email + ", password="
-				+ password + ", person_type=" + person_type + "]";
+				+ password + ", person_type=" + personType + "]";
 	}
 
 	
