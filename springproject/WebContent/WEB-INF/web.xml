@@ -35,6 +35,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			classpath:com/cerveceroscodigo/spring/config/dao-context.xml
+			classpath:com/cerveceroscodigo/spring/config/service-context.xml
 		</param-value>
 	</context-param>
 </web-app>

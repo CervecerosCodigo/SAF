@@ -1,7 +1,14 @@
 package com.cerveceroscodigo.spring.dao;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="person")
 public class Person {
 
+	@Id
 	private int idperson;
 	private String firstname;
 	private String lastname;
