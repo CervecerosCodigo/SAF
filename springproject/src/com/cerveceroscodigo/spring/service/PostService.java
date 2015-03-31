@@ -26,8 +26,11 @@ public class PostService {
 		this.postDao = postDao;
 	}
 	
-	public List<Post> getPost(){
-		return postDao.getPost();
+	public List<Post> showAllPost(){
+		return postDao.showAllPost();
 	}
 	
+	public void create(Post post){
+		postDao.create(post);
+	}
 }

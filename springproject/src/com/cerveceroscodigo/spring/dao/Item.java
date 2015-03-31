@@ -2,6 +2,7 @@ package com.cerveceroscodigo.spring.dao;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 public class Item {
 
 	@Id
+	@GeneratedValue
 	@Column(name="iditem")
 	private int id;
 	
