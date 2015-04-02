@@ -48,6 +48,7 @@ public class HomeController {
 		
 		
 		//Alt nedenfor er under test..
+		
 //		Date d = Calendar.getInstance().getTime();
 //		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 //		String dateString = dateFormat.format(d);
