@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,12 +18,17 @@ public class PriceHistory {
 	private int idItem;
 	
 	@Column(name="date")
-	private Date dateChanged;
+	private String dateChanged;
 	
 	@Column(name="old_price")
 	private double oldPrice;
 
-	public PriceHistory(int idItem, Date dateChanged, double oldPrice) {
+	@ManyToOne
+	@JoinColumn(name="id")
+	private Item item;
+	
+	
+	public PriceHistory(int idItem, String dateChanged, double oldPrice) {
 		super();
 		this.idItem = idItem;
 		this.dateChanged = dateChanged;
@@ -39,11 +46,11 @@ public class PriceHistory {
 		this.idItem = idItem;
 	}
 
-	public Date getDateChanged() {
+	public String getDateChanged() {
 		return dateChanged;
 	}
 
-	public void setDateChanged(Date dateChanged) {
+	public void setDateChanged(String dateChanged) {
 		this.dateChanged = dateChanged;
 	}
 

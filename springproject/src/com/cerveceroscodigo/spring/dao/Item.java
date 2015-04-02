@@ -27,10 +27,10 @@ public class Item {
 	@Column(name="num_instock")
 	private int numInStock;
 
-	public Item(int id, String type, String description, double priceIn,
+	public Item(String type, String description, double priceIn,
 			int numInStock) {
 		super();
-		this.id = id;
+		
 		this.type = type;
 		this.description = description;
 		this.priceIn = priceIn;
