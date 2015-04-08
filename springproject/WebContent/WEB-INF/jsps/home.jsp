@@ -1,7 +1,7 @@
 
 <%@include file="head.jsp"%>
 
-
+<div id="container">
 
 <h1>Hi there!</h1>
 <c:out value="${name}"></c:out>
@@ -43,5 +43,7 @@ Poststed: <c:out value="${post.postAddress}"></c:out> <br/>
 <c:forEach var="hist" items="${capHistory}">
 	<c:out value="${hist}"></c:out>
 </c:forEach>
+
+</div> <!-- End of container -->
 
 <%@include file="footer.jsp"%>
