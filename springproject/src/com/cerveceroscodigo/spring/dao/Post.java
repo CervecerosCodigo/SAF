@@ -30,8 +30,7 @@ public class Post {
 		
 	}
 	
-	
-	
+
 	public String getPostNumber() {
 		return postNumber;
 	}

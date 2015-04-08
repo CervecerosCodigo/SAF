@@ -2,20 +2,18 @@ package com.cerveceroscodigo.spring.dao;
 
 import java.util.List;
 
-import javax.sql.DataSource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-@Component("personsDao")
-public class PersonDao {
+@Component("customerDao")
+public class CustomerDao {
 
 	
 	@Autowired
@@ -29,23 +27,23 @@ public class PersonDao {
 	
 	//from Person er referanse til Java-klasse, ikke database
 	@SuppressWarnings("unchecked")
-	public List<Person> getPersons(){
-		return session().createQuery("from Person").list();
+	public List<Customer> getCustomer(){
+		return session().createQuery("from Customer").list();
 	}
 	
-	public Person getPerson(int id){
+	public Customer getCustomer(int id){
 		return null;
 	}
 	
-	public void createPerson(Person person){
-		session().save(person);
+	public void createCustomer(Customer customer){
+		session().save(customer);
 	}
 	
-	public boolean deletePerson(int id){
+	public boolean deleteCustomer(int id){
 		return false;
 	}
 	
-	public boolean updatePerson(Person person){
+	public boolean updateCustomer(Customer customer){
 		return false;
 	}
 }

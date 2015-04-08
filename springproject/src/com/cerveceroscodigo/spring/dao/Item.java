@@ -27,17 +27,29 @@ public class Item {
 	@Column(name="num_instock")
 	private int numInStock;
 
+	@Column(name="changed_by")
+	private int changedBy;
+	
 	public Item(String type, String description, double priceIn,
-			int numInStock) {
+			int numInStock, int changedBy) {
 		super();
 		
 		this.type = type;
 		this.description = description;
 		this.priceIn = priceIn;
 		this.numInStock = numInStock;
+		this.changedBy = changedBy;
 	}
 
 	public Item() {
+	}
+
+	public int getChangedBy() {
+		return changedBy;
+	}
+
+	public void setChangedBy(int changedBy) {
+		this.changedBy = changedBy;
 	}
 
 	public int getId() {
@@ -84,7 +96,9 @@ public class Item {
 	public String toString() {
 		return "Item [id=" + id + ", type=" + type + ", description="
 				+ description + ", priceIn=" + priceIn + ", numInStock="
-				+ numInStock + "]";
+				+ numInStock + ", changedBy=" + changedBy + "]";
 	}
+
+	
 
 }

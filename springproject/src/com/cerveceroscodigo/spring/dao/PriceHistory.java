@@ -1,6 +1,6 @@
 package com.cerveceroscodigo.spring.dao;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,21 +18,27 @@ public class PriceHistory {
 	private int idItem;
 	
 	@Column(name="date")
-	private String dateChanged;
+	private Calendar dateChanged;
 	
 	@Column(name="old_price")
 	private double oldPrice;
 
+	
+	@Column(name="emp_idemp")
+	private int changedBy;
+	
 	@ManyToOne
 	@JoinColumn(name="id")
 	private Item item;
 	
 	
-	public PriceHistory(int idItem, String dateChanged, double oldPrice) {
+	
+	public PriceHistory(int idItem, Calendar dateChanged, double oldPrice, int changedBy) {
 		super();
 		this.idItem = idItem;
 		this.dateChanged = dateChanged;
 		this.oldPrice = oldPrice;
+		this.changedBy = changedBy;
 	}
 
 	public PriceHistory() {
@@ -46,11 +52,11 @@ public class PriceHistory {
 		this.idItem = idItem;
 	}
 
-	public String getDateChanged() {
+	public Calendar getDateChanged() {
 		return dateChanged;
 	}
 
-	public void setDateChanged(String dateChanged) {
+	public void setDateChanged(Calendar dateChanged) {
 		this.dateChanged = dateChanged;
 	}
 
@@ -62,10 +68,21 @@ public class PriceHistory {
 		this.oldPrice = oldPrice;
 	}
 
+	
+	public int getChangedBy() {
+		return changedBy;
+	}
+
+	public void setChangedBy(int changedBy) {
+		this.changedBy = changedBy;
+	}
+
 	@Override
 	public String toString() {
 		return "PriceHistory [idItem=" + idItem + ", dateChanged="
-				+ dateChanged + ", oldPrice=" + oldPrice + "]";
+				+ dateChanged + ", oldPrice=" + oldPrice + ", changedBy="
+				+ changedBy + "]";
 	}
 
+	
 }

@@ -1,19 +1,22 @@
 package com.cerveceroscodigo.spring.dao;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="person")
-public class Person {
+@Table(name="cust")
+public class Customer {
 
 	@Id
 	@GeneratedValue
-	@Column(name="idperson")
-	private int idperson;
+	@Column(name="idcust")
+	private int idCustomer;
 	
 	@Column(name="firstname")
 	private String firstname;
@@ -27,8 +30,9 @@ public class Person {
 	@Column(name="address2")
 	private String address2;
 	
-	@Column(name="post_number")
-	private String postNumber;
+//	@ManyToOne
+//	@Column(name="post_number")
+//	private String postNumber;
 	
 	@Column(name="phone")
 	private String phone;
@@ -39,35 +43,37 @@ public class Person {
 	@Column(name="password")
 	private String password;
 	
-	@Column(name="person_type")
-	private int personType;
-
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="post_number")
+	private Post post;
 	
-	public Person(){
+	
+	
+	public Customer(){
 		
 	}
 	
-	public Person(String firstname, String lastname, String address1,
-			String address2, String postNumber, String phone, String email,
-			String password, int personType) {
+	public Customer(String firstname, String lastname, String address1,
+			String address2, String phone, String email,
+			String password, Post post) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.address1 = address1;
 		this.address2 = address2;
-		this.postNumber = postNumber;
+//		this.postNumber = postNumber;
 		this.phone = phone;
 		this.email = email;
 		this.password = password;
-		this.personType = personType;
+		this.post = post;
 	}
 
-	public int getIdperson() {
-		return idperson;
+	public int getIdCustomer() {
+		return idCustomer;
 	}
 
-	public void setIdperson(int idperson) {
-		this.idperson = idperson;
+	public void setIdCustomer(int idCustomer) {
+		this.idCustomer = idCustomer;
 	}
 
 	public String getFirstname() {
@@ -102,13 +108,13 @@ public class Person {
 		this.address2 = address2;
 	}
 
-	public String getPostNumber() {
-		return postNumber;
-	}
-
-	public void setPostNumber(String postNumber) {
-		this.postNumber = postNumber;
-	}
+//	public String getPostNumber() {
+//		return postNumber;
+//	}
+//
+//	public void setPostNumber(String postNumber) {
+//		this.postNumber = postNumber;
+//	}
 
 	public String getPhone() {
 		return phone;
@@ -134,22 +140,25 @@ public class Person {
 		this.password = password;
 	}
 
-	public int getPersonType() {
-		return personType;
+	public Post getPost() {
+		return post;
 	}
 
-	public void setPersonType(int personType) {
-		this.personType = personType;
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
 	@Override
 	public String toString() {
-		return "Person [idperson=" + idperson + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", address1=" + address1
-				+ ", address2=" + address2 + ", post_number=" + postNumber
-				+ ", phone=" + phone + ", email=" + email + ", password="
-				+ password + ", person_type=" + personType + "]";
+		return "Customer [idCustomer=" + idCustomer + ", firstname="
+				+ firstname + ", lastname=" + lastname + ", address1="
+				+ address1 + ", address2=" + address2 + ", postNumber="
+				+ ", phone=" + phone + ", email=" + email
+				+ ", password=" + password + ", post=" + "]";
 	}
+
+
+
 
 	
 }
