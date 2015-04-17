@@ -37,7 +37,8 @@ public class CustomerDao {
 	}
 	
 	public void createCustomer(Customer customer){
-		session().save(customer);
+		if(findCustomerByEmail(customer.getEmail()) == null)
+			session().save(customer);
 	}
 	
 	public boolean deleteCustomer(int id){
@@ -58,6 +59,12 @@ public class CustomerDao {
 		return c != null;
 	}
 	
+	private Customer findCustomerByEmail(String e){
+		Criteria crit = session().createCriteria(Customer.class);
+		crit.add(Restrictions.eq("email", e));
+		Customer c = (Customer)crit.uniqueResult();
+		return c;
+	}
 	
 	private Customer findCustomerById(int id){
 		Criteria crit = session().createCriteria(Item.class);
