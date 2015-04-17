@@ -13,7 +13,6 @@ import com.cerveceroscodigo.spring.dao.Post;
 import com.cerveceroscodigo.spring.service.CustomerService;
 import com.cerveceroscodigo.spring.service.ItemService;
 import com.cerveceroscodigo.spring.service.PostService;
-import com.cerveceroscodigo.spring.service.PriceHistoryService;
 
 @Controller
 public class HomeController {
@@ -23,8 +22,6 @@ public class HomeController {
 	
 	@Autowired
 	private ItemService itemService;
-	@Autowired
-	private PriceHistoryService historyService;
 	@Autowired
 	private CustomerService customerService;
 	
@@ -36,10 +33,6 @@ public class HomeController {
 		List<Post> post = postService.showAllPost();
 		model.addAttribute("post", post);
 		
-		//model.addAttribute("name", "Boris");
-		
-//		Item item = new Item("BIKE", "Electric 48V ", 450.00, 2);
-//		itemService.create(item);
 		List<Item> items = itemService.showAllItems();
 		model.addAttribute("items", items);
 		

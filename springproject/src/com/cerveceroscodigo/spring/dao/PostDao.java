@@ -65,4 +65,6 @@ public class PostDao {
 		Post p = (Post) crit.uniqueResult();
 		return p != null;
 	}
+	
+	
 }
