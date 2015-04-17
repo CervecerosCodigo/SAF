@@ -30,10 +30,6 @@ public class Customer {
 	@Column(name="address2")
 	private String address2;
 	
-//	@ManyToOne
-//	@Column(name="post_number")
-//	private String postNumber;
-	
 	@Column(name="phone")
 	private String phone;
 	
@@ -49,6 +45,7 @@ public class Customer {
 	
 	
 	
+	
 	public Customer(){
 		
 	}
@@ -61,7 +58,6 @@ public class Customer {
 		this.lastname = lastname;
 		this.address1 = address1;
 		this.address2 = address2;
-//		this.postNumber = postNumber;
 		this.phone = phone;
 		this.email = email;
 		this.password = password;
@@ -108,14 +104,6 @@ public class Customer {
 		this.address2 = address2;
 	}
 
-//	public String getPostNumber() {
-//		return postNumber;
-//	}
-//
-//	public void setPostNumber(String postNumber) {
-//		this.postNumber = postNumber;
-//	}
-
 	public String getPhone() {
 		return phone;
 	}
@@ -156,9 +144,5 @@ public class Customer {
 				+ ", phone=" + phone + ", email=" + email
 				+ ", password=" + password + ", post=" + "]";
 	}
-
-
-
-
 	
 }

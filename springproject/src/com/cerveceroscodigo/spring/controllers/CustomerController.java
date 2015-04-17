@@ -20,11 +20,15 @@ public class CustomerController {
 		return null;
 	}
 	
-	@RequestMapping("changepassword")
+	@RequestMapping("edit")
 	public void editCustomer(Model model){
 		
 	}
 	
+	@RequestMapping("orderhistory")
+	public void displayOrderHistory(Model model){
+		
+	}
 	
 	
 }
