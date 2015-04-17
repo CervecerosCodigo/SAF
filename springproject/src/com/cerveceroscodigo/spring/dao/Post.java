@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 
 /**
@@ -19,10 +20,12 @@ import javax.persistence.Table;
 @Table(name="post")
 public class Post {
 
+	@Size(min=4, max=6, message="Post code must be between 4 and 6 characters")
 	@Id
 	@Column(name="post_number")
 	private String postNumber;
 	
+	@Size(min=2, max=45, message="Post address must be between 2 and 45 characters")
 	@Column(name="post_address")
 	private String postAddress;
 

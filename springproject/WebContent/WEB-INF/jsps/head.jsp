@@ -13,6 +13,6 @@
 </head>
 <body>
 
-<nav>
-
-</nav>
+<div id="nav">
+<span class="menuitem"><a href="${pageContext.request.contextPath}/">Home</a></span><span class="menuitem"><a href="${pageContext.request.contextPath}/displayRegistration">Register</a></span>
+</div>

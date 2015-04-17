@@ -2,7 +2,8 @@
 
 <div id="container">
 
-<h3>An unforseen error occured. The database may be down.</h3>
+<h2>Registereringen er fullført!</h2>
+
 
 </div> <!-- End of container -->
 

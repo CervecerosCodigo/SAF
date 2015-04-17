@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="cust")
@@ -21,27 +24,36 @@ public class Customer {
 	@Column(name="idcust")
 	private int idCustomer;
 	
+	@Size(min=2, max=50, message="Name must be between 5 and 50 characters")
 	@Column(name="firstname")
 	private String firstname;
 	
+	@Size(min=2, max=50, message="Name must be between 5 and 50 characters")
 	@Column(name="lastname")
 	private String lastname;
 	
+	@Size(min=2, max=50, message="Address must be between 5 and 50 characters")
 	@Column(name="address1")
 	private String address1;
 	
 	@Column(name="address2")
 	private String address2;
 	
+	@Size(min=8, max=8, message="The phone number must be 8 digits long")
 	@Column(name="phone")
 	private String phone;
 	
+	@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
+	        +"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", 
+					message="This does not appear to be a valid email address")
 	@Column(name="email")
 	private String email;
 	
+	@Size(min=8, max=50, message="Password must be between 5 and 50 characters")
 	@Column(name="password")
 	private String password;
 	
+	@Valid
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="post_number")
 	private Post post;
@@ -141,7 +153,6 @@ public class Customer {
 		this.post = post;
 	}
 
-	
 	public List<Orders> getOrders() {
 		return orders;
 	}
@@ -154,9 +165,11 @@ public class Customer {
 	public String toString() {
 		return "Customer [idCustomer=" + idCustomer + ", firstname="
 				+ firstname + ", lastname=" + lastname + ", address1="
-				+ address1 + ", address2=" + address2 + ", postNumber="
-				+ ", phone=" + phone + ", email=" + email
-				+ ", password=" + password + ", post=" + "]";
+				+ address1 + ", address2=" + address2 + ", phone=" + phone
+				+ ", email=" + email + ", password=" + password + ", post="
+				+ post + ", orders=" + orders + "]";
 	}
+
+
 	
 }

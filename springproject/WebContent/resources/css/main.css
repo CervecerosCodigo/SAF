@@ -16,7 +16,7 @@ body {
 	margin-bottom: 100px;
 }
 
-nav {
+#nav {
 	background-color: #1e2e64;
 	width: 100%;
 	height: 65px;
@@ -27,6 +27,19 @@ nav {
 	display: block;
 	min-width: 600px;
 }
+
+.menuitem{
+	margin-left: 5em;
+	height: 30px;
+	font-size:large;
+	width: 60px;
+	color: white !important;
+}
+
+.menuitem a{
+	color: white !important;
+}
+
 
 footer {
 	background-color: white;
@@ -39,3 +52,26 @@ footer {
 	display: block;
 	min-width: 600px;
 }
+
+/*---------------------------------*/
+.formtable {
+	width: 500px;
+	padding: 10px;
+	border: 1px solid blue;
+}
+
+.label {
+	text-allign: right;
+	vertical-align: top;
+}
+
+.control {
+	margin-left: 10px;
+}
+
+.error{
+	left-margin: 10px;
+	font-size: small;
+	color: red;
+}
+

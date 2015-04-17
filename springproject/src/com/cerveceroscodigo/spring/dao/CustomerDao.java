@@ -28,7 +28,7 @@ public class CustomerDao {
 	
 	//from Person er referanse til Java-klasse, ikke database
 	@SuppressWarnings("unchecked")
-	public List<Customer> getCustomer(){
+	public List<Customer> getCustomers(){
 		return session().createQuery("from Customer").list();
 	}
 	
@@ -36,9 +36,12 @@ public class CustomerDao {
 		return findCustomerById(id);
 	}
 	
-	public void createCustomer(Customer customer){
-		if(findCustomerByEmail(customer.getEmail()) == null)
+	public boolean createCustomer(Customer customer){
+		if(findCustomerByEmail(customer.getEmail()) == null){
 			session().save(customer);
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean deleteCustomer(int id){
