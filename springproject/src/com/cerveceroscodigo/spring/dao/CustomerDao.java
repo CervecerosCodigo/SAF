@@ -75,4 +75,5 @@ public class CustomerDao {
 		Customer c = (Customer)crit.uniqueResult();
 		return c;		
 	}
+	
 }

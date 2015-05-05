@@ -40,4 +40,8 @@ public class CustomerService {
 		return customerDao.exists(id);
 	}
 	
+	
+	public Customer getCustomerById(int id){
+		return customerDao.getCustomer(id);
+	}
 }

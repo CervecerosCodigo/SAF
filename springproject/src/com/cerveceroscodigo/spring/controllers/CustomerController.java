@@ -1,5 +1,7 @@
 package com.cerveceroscodigo.spring.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +56,14 @@ public class CustomerController {
 		return "registercustomer";
 	}
 	
-	
+	@RequestMapping(value="/findcustomer")
+	public String getCustomerByID(Model model, int id){
+		
+		Customer c = customers.getCustomerById(id);
+		if(c != null)
+			model.addAttribute("customer", c);
+		return "displaycustomer";
+	}
 	
 	@RequestMapping("/showaccount")
 	public Customer showAccount(Model model){
@@ -69,6 +78,14 @@ public class CustomerController {
 	@RequestMapping("/orderhistory")
 	public void displayOrderHistory(Model model){
 		
+	}
+	
+	@RequestMapping("/showcustomers")
+	public String displayAllCustomers(Model model){
+		List<Customer> list = customers.getCustomers();
+		if(list != null)
+			model.addAttribute("liste", list);
+		return "customers";
 	}
 	
 }

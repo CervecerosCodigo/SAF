@@ -14,5 +14,9 @@
 <body>
 
 <div id="nav">
-<span class="menuitem"><a href="${pageContext.request.contextPath}/">Home</a></span><span class="menuitem"><a href="${pageContext.request.contextPath}/displayRegistration">Register</a></span>
+	<span class="menuitem">
+		<a href="${pageContext.request.contextPath}/">Home</a>
+		<a href="${pageContext.request.contextPath}/displayRegistration">Register</a>
+		<a href="${pageContext.request.contextPath}/showcustomers">Show Customers</a>
+	</span>
 </div>

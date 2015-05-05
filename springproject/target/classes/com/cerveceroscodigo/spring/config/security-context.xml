@@ -35,6 +35,7 @@
  		<security:intercept-url pattern="/signin" access="permitAll" />
 		<security:intercept-url pattern="/registercustomer" access="permitAll" />
 		<security:intercept-url pattern="/displayRegistration" access="permitAll" />
+		<security:intercept-url pattern="/showcustomers" access="permitAll" />
 		
 		
 		
