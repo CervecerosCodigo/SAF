@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,20 +15,24 @@
 <body>
 
 	<div id="nav">
-		<span class="menuitem"> <a
-			href="${pageContext.request.contextPath}/">Home</a> <a
-			href="${pageContext.request.contextPath}/displayRegistration">Register</a>
-			<a href="${pageContext.request.contextPath}/showcustomers">Show
-				Customers</a> <a href="${pageContext.request.contextPath}/signin">Login</a>
-			<%-- <a href="<c:url value="logout"/>">Log out</a> --%> 
+		<span class="menuitem"> 
+			<a href="${pageContext.request.contextPath}/">Home</a> 
+			<a href="${pageContext.request.contextPath}/displayUserRegistration">Register</a>
 			
-			<c:url var="logoutUrl" value="/logout" />
-			<form id="logoutform" action="${logoutUrl}" method="post">
-				<!-- <input type="submit" value="Log out" />  -->
-				
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<a href="${pageContext.request.contextPath}/showCustomers">Show	Customers</a> 
+				<a href="${pageContext.request.contextPath}/registerItem">New item</a>
+			</sec:authorize>
+			
+			
+			
+			<a href="${pageContext.request.contextPath}/signin">Login</a>
+
+			
+			
+			<form id="logoutform" action="<c:url value="/logout" />" method="post">
 				<a href="javascript:{}" onclick="document.getElementById('logoutform').submit();">Log out</a>
-				
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			</form>
 		</span>
 	</div>

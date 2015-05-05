@@ -6,7 +6,7 @@
 	<br>
 	<h3>New store item</h3>
 	
-	<sf:form method="post" action="${pageCOntext.request.contextPath}/registeritem" commandName="item">
+	<sf:form method="post" action="${pageContext.request.contextPath}/registeritem" commandName="item">
 		<table class="formtable">
 			<tr>
 				<td class="label">Item type:</td>

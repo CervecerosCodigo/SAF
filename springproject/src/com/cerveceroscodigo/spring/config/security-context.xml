@@ -29,26 +29,27 @@
 	<security:http use-expressions="true">
  		
  		<!--URL'ene nedenfor er bare tilgjengelig for de som er pålogget/autentisert  -->
- 		<security:intercept-url pattern="/showaccount" access="hasRole('ROLE_CUSTOMER')" />
- 		<security:intercept-url pattern="/editaccount" access="hasRole('ROLE_CUSTOMER')" />
- 		<security:intercept-url pattern="/orderhistory" access="hasRole('ROLE_CUSTOMER')" />
+ 		<security:intercept-url pattern="/account" access="hasRole('ROLE_CUSTOMER')" />
+ 		<security:intercept-url pattern="/showAccount" access="hasRole('ROLE_CUSTOMER')" />
+ 		<security:intercept-url pattern="/editAccount" access="hasRole('ROLE_CUSTOMER')" />
+ 		<security:intercept-url pattern="/orderHistory" access="hasRole('ROLE_CUSTOMER')" />
  		<security:intercept-url pattern="/registered" access="hasRole('ROLE_CUSTOMER')" />
- 		
+
+ 		<security:intercept-url pattern="/showCustomers" access="hasRole('ROLE_ADMIN')" />
+ 		<security:intercept-url pattern="/registerItem" access="hasRole('ROLE_ADMIN')" />
  		
  		<!--URL'ene nedenfor vil være tilgjengelig for alle, uten pålogging  -->
  		<security:intercept-url pattern="/static/**" access="permitAll" />		<!--Tillat alle resources, som css osv  -->
  		<security:intercept-url pattern="/" access="permitAll" />
  		<security:intercept-url pattern="/home" access="permitAll" />
- 		<security:intercept-url pattern="/login" access="permitAll" />
  		<security:intercept-url pattern="/signin" access="permitAll" />
-		<security:intercept-url pattern="/registercustomer" access="permitAll" />
-		<security:intercept-url pattern="/displayRegistration" access="permitAll" />
-		<security:intercept-url pattern="/showcustomers" access="permitAll" />		
 		<security:intercept-url pattern="/denied" access="permitAll" />
 		<security:intercept-url pattern="/error" access="permitAll" />
-		<security:intercept-url pattern="/loggedout" access="permitAll" />
 		<security:intercept-url pattern="/logout" access="permitAll" />
 
+		<security:intercept-url pattern="/displayUserRegistration" access="permitAll" />
+		<security:intercept-url pattern="/registerCustomer" access="permitAll" />
+		<security:intercept-url pattern="/showItems" access="permitAll" />
 
 
 		<!--Alt annet er denied -->
