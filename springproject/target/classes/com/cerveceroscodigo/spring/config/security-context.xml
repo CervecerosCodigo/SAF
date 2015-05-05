@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<security:authentication-manager>
+		
+	<security:authentication-provider>
+		<security:user-service>
+			<security:user name="espen" authorities="admin"
+				password="letmein" />
+			<security:user name="customer" authorities="customer"
+				password="letmein" />
+		</security:user-service>
+	</security:authentication-provider>
+	</security:authentication-manager>
+	
+	
+	<security:http use-expressions="true">
+ 		
+ 		<!--URL'ene nedenfor er bare tilgjengelig for de som er pålogget/autentisert  -->
+ 		<security:intercept-url pattern="/showaccount" access="isAuthenticated()" />
+ 		<security:intercept-url pattern="/editaccount" access="isAuthenticated()" />
+ 		<security:intercept-url pattern="/orderhistory" access="isAuthenticated()" />
+ 		<security:intercept-url pattern="/registered" access="isAuthenticated()" />
+ 		
+ 		
+ 		<!--URL'ene nedenfor vil være tilgjengelig for alle, uten pålogging  -->
+ 		<security:intercept-url pattern="/static/**" access="permitAll" />		<!--Tillat alle resources, som css osv  -->
+ 		<security:intercept-url pattern="/" access="permitAll" />
+ 		<security:intercept-url pattern="/home" access="permitAll" />
+ 		<security:intercept-url pattern="/login" access="permitAll" />
+ 		<security:intercept-url pattern="/signin" access="permitAll" />
+		<security:intercept-url pattern="/registercustomer" access="permitAll" />
+		<security:intercept-url pattern="/displayRegistration" access="permitAll" />
+		
+		
+		
+		<!--Alt annet er denied  -->
+		<security:intercept-url pattern="/**" access="denyAll" />
+		
+		
+ 		<!-- <security:form-login login-page="/signin" /> --> 
+		
+		<security:form-login login-page='/signin' 
+            default-target-url="/home"
+            always-use-default-target="true"                    
+            authentication-failure-url="/singin"/>
+	</security:http>
+</beans>
