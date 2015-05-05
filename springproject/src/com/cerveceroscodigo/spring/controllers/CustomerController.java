@@ -61,7 +61,7 @@ public class CustomerController {
 		return null;
 	}
 	
-	@RequestMapping("/editcustomer")
+	@RequestMapping("/editaccount")
 	public void editCustomer(Model model){
 		
 	}

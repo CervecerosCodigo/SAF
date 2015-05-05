@@ -8,8 +8,11 @@
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
 		<config>WebContent/WEB-INF/springproject-servlet.xml</config>
+		<config>src/com/cerveceroscodigo/spring/config/security-context.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/com/cerveceroscodigo/spring/config/service-context.xml</config>
+		<config>src/com/cerveceroscodigo/spring/config/dao-context.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>
