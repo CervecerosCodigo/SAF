@@ -35,13 +35,27 @@
  		<security:intercept-url pattern="/signin" access="permitAll" />
 		<security:intercept-url pattern="/registercustomer" access="permitAll" />
 		<security:intercept-url pattern="/displayRegistration" access="permitAll" />
+<<<<<<< HEAD
 		<security:intercept-url pattern="/showcustomers" access="permitAll" />		
 		<security:intercept-url pattern="/denied" access="permitAll" />
 		<security:intercept-url pattern="/error" access="permitAll" />
 
+=======
+<security:intercept-url pattern="/showcustomers" access="permitAll" />		
+<security:intercept-url pattern="/denied" access="permitAll" />
+<security:intercept-url pattern="/error" access="permitAll" />
+<security:intercept-url pattern="/registeritem" access="permitAll" />
+>>>>>>> d48fd4a6111a327cfcbec442d24bb80b8bb2805b
 
 
 		<!--Alt annet er denied -->
+
+
+		
+		
+		
+		<!--Alt annet er denied  -->
+
 		<security:intercept-url pattern="/**" access="denyAll" />
 
 

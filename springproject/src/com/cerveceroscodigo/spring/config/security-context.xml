@@ -35,9 +35,10 @@
  		<security:intercept-url pattern="/signin" access="permitAll" />
 		<security:intercept-url pattern="/registercustomer" access="permitAll" />
 		<security:intercept-url pattern="/displayRegistration" access="permitAll" />
-		<security:intercept-url pattern="/showcustomers" access="permitAll" />		
-		<security:intercept-url pattern="/denied" access="permitAll" />
-		<security:intercept-url pattern="/error" access="permitAll" />
+<security:intercept-url pattern="/showcustomers" access="permitAll" />		
+<security:intercept-url pattern="/denied" access="permitAll" />
+<security:intercept-url pattern="/error" access="permitAll" />
+<security:intercept-url pattern="/registeritem" access="permitAll" />
 
 
 
@@ -45,11 +46,12 @@
 		<security:intercept-url pattern="/**" access="denyAll" />
 
 
-		<!--loginfunksjonalitet  -->
+
 		<security:form-login login-page="/login"
 			authentication-failure-url="/signin?error=true" />
 		<security:logout logout-success-url="/loggedout" />
 		<security:access-denied-handler	error-page="/denied" />
+
 
 	</security:http>
 </beans>
