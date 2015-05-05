@@ -35,19 +35,24 @@
  		<security:intercept-url pattern="/signin" access="permitAll" />
 		<security:intercept-url pattern="/registercustomer" access="permitAll" />
 		<security:intercept-url pattern="/displayRegistration" access="permitAll" />
-		<security:intercept-url pattern="/showcustomers" access="permitAll" />
-		
-		
-		
-		<!--Alt annet er denied  -->
+<security:intercept-url pattern="/showcustomers" access="permitAll" />		
+<security:intercept-url pattern="/denied" access="permitAll" />
+<security:intercept-url pattern="/error" access="permitAll" />
+
+
+
+		<!--Alt annet er denied -->
 		<security:intercept-url pattern="/**" access="denyAll" />
-		
-		
- 		<!-- <security:form-login login-page="/signin" /> --> 
-		
-		<security:form-login login-page='/signin' 
-            default-target-url="/home"
-            always-use-default-target="true"                    
-            authentication-failure-url="/singin"/>
+
+
+
+		<security:form-login login-page="/login"
+			authentication-failure-url="/signin?error=true" />
+		<security:logout logout-success-url="/loggedout" />
+		<security:access-denied-handler	error-page="/denied" />
+
+<!-- 		<security:form-login login-page='/login'
+			default-target-url="/home" always-use-default-target="true"
+			authentication-failure-url="/denied" /> -->
 	</security:http>
 </beans>

@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: luke
 Build-Jdk: 1.8.0_31
+=======
+Built-By: espen
+Build-Jdk: 1.8.0_45
+>>>>>>> esen
 Created-By: Maven Integration for Eclipse
 
