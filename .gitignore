@@ -1,3 +1,9 @@
+#Spring
+pom.properties
+
+#git
+*.orig
+
 #mac..
 .DS_Store
 
