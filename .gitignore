@@ -1,5 +1,6 @@
 #Spring
 pom.properties
+MANIFEST.MF
 
 #git
 *.orig
