@@ -38,10 +38,17 @@
 <security:intercept-url pattern="/showcustomers" access="permitAll" />		
 <security:intercept-url pattern="/denied" access="permitAll" />
 <security:intercept-url pattern="/error" access="permitAll" />
-
+<security:intercept-url pattern="/registeritem" access="permitAll" />
 
 
 		<!--Alt annet er denied -->
+
+
+		
+		
+		
+		<!--Alt annet er denied  -->
+
 		<security:intercept-url pattern="/**" access="denyAll" />
 
 
