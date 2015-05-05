@@ -28,7 +28,7 @@ public class CustomerController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/displayRegistration")
+	@RequestMapping("/displayUserRegistration")
 	public String displayRegistration(Model model){
 		model.addAttribute("post", new Post());
 		model.addAttribute("customer", new Customer());
@@ -45,7 +45,7 @@ public class CustomerController {
 	 * @param result
 	 * @return
 	 */
-	@RequestMapping(value="/registercustomer", method=RequestMethod.POST)
+	@RequestMapping(value="/registerCustomer", method=RequestMethod.POST)
 	public String registerCustomer(Model model, @Valid Customer customer, BindingResult result){
 		
 		if(!result.hasErrors()){
@@ -53,7 +53,7 @@ public class CustomerController {
 				return "registered";	
 			}
 		}
-		return "registercustomer";
+		return "registerCustomer";
 	}
 	
 	@RequestMapping(value="/findcustomer")
@@ -80,7 +80,7 @@ public class CustomerController {
 		
 	}
 	
-	@RequestMapping("/showcustomers")
+	@RequestMapping("/showCustomers")
 	public String displayAllCustomers(Model model){
 		List<Customer> list = customers.getCustomers();
 		if(list != null)

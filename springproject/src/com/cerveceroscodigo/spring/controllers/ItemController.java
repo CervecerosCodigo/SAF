@@ -20,23 +20,26 @@ public class ItemController {
 	@Autowired
 	ItemService items;
 
-	@RequestMapping(value = "/registeritem", method = RequestMethod.POST)
-	public String createItem(Model model, @Valid Item item, BindingResult result) {
 
-		if (!result.hasErrors()) {
-			items.create(item); //@TODO: Denne må endres til at den returnerer boolen
-			return "registereditem"; // ref to page if registered
-		}
-		return "registeritem"; // ref to the regsitering page
-	}
-
-	@RequestMapping(value = "/registeritem", method = RequestMethod.GET)
-	public String displayItemRegistration(Model model, @Valid Item item, BindingResult result) {
+	@RequestMapping(value = "/registerItem", method = RequestMethod.GET)
+	public String displayItemRegistration(Model model) {
 
 		model.addAttribute("item", new Item());
-		return "registeritem"; // ref to the regsitering page
+		return "registerItem";
 	}
 
+	
+	@RequestMapping(value = "/registerItem", method = RequestMethod.POST)
+	public String createItem(Model model, @Valid Item item, BindingResult result) {
+		System.out.println("createItem");
+		if (!result.hasErrors()) {
+			items.create(item); //@TODO: Denne må endres til at den returnerer boole
+			return "registered"; // ref to page if registered
+		}
+		return "registerItem"; // ref to the regsitering page
+	}
+
+	
 	@RequestMapping("displayItem")
 	public Item displayItem(Model model) {
 		return null;
