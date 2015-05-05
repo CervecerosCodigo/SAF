@@ -18,5 +18,6 @@
 		<a href="${pageContext.request.contextPath}/">Home</a>
 		<a href="${pageContext.request.contextPath}/displayRegistration">Register</a>
 		<a href="${pageContext.request.contextPath}/showcustomers">Show Customers</a>
+		<a href="${pageContext.request.contextPath}/registeritem">Register new item</a>
 	</span>
 </div>
