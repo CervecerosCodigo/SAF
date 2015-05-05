@@ -1,7 +1,9 @@
+
 <%@include file="head.jsp"%>
 
 <div id="container">
-Access Denied!
+
+Displaying you account
 
 </div> <!-- End of container -->
 

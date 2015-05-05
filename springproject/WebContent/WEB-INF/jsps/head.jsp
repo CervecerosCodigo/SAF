@@ -13,11 +13,21 @@
 </head>
 <body>
 
-<div id="nav">
-	<span class="menuitem">
-		<a href="${pageContext.request.contextPath}/">Home</a>
-		<a href="${pageContext.request.contextPath}/displayRegistration">Register</a>
-		<a href="${pageContext.request.contextPath}/showcustomers">Show Customers</a>
-		<a href="${pageContext.request.contextPath}/registeritem">Register new item</a>
-	</span>
-</div>
+	<div id="nav">
+		<span class="menuitem"> <a
+			href="${pageContext.request.contextPath}/">Home</a> <a
+			href="${pageContext.request.contextPath}/displayRegistration">Register</a>
+			<a href="${pageContext.request.contextPath}/showcustomers">Show
+				Customers</a> <a href="${pageContext.request.contextPath}/signin">Login</a>
+			<%-- <a href="<c:url value="logout"/>">Log out</a> --%> 
+			
+			<c:url var="logoutUrl" value="/logout" />
+			<form id="logoutform" action="${logoutUrl}" method="post">
+				<!-- <input type="submit" value="Log out" />  -->
+				
+				<a href="javascript:{}" onclick="document.getElementById('logoutform').submit();">Log out</a>
+				
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			</form>
+		</span>
+	</div>

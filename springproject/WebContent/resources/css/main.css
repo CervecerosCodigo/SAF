@@ -28,18 +28,17 @@ body {
 	min-width: 600px;
 }
 
-.menuitem{
+.menuitem {
 	margin-left: 5em;
 	height: 30px;
-	font-size:large;
+	font-size: large;
 	width: 60px;
 	color: white !important;
 }
 
-.menuitem a{
+.menuitem a {
 	color: white !important;
 }
-
 
 footer {
 	background-color: white;
@@ -69,9 +68,20 @@ footer {
 	margin-left: 10px;
 }
 
-.error{
+.error {
 	left-margin: 10px;
 	font-size: small;
 	color: red;
 }
 
+#linkbutton {
+	
+	color: white !important;
+	background: none !important;
+	border: none;
+	padding: 0 !important;
+	font: inherit;
+	/*border is optional*/
+	border-bottom: 1px solid #444;
+	cursor: pointer;
+}

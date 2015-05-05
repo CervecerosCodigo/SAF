@@ -7,24 +7,32 @@
 
 	<security:authentication-manager>
 		
-	<security:authentication-provider>
+ 	<security:authentication-provider>
 		<security:user-service>
-			<security:user name="espen" authorities="admin"
+			<security:user name="espen" authorities="ROLE_ADMIN"
 				password="letmein" />
-			<security:user name="customer" authorities="customer"
+			<security:user name="customer" authorities="ROLE_CUSTOMER"
 				password="letmein" />
 		</security:user-service>
 	</security:authentication-provider>
+	
+	
+<!-- 	<security:authentication-provider>
+		<security:jdbc-user-service data-source-ref="dataSource" />
+	</security:authentication-provider> -->
+	
+	
+	
 	</security:authentication-manager>
-	
-	
+
+
 	<security:http use-expressions="true">
  		
  		<!--URL'ene nedenfor er bare tilgjengelig for de som er pålogget/autentisert  -->
- 		<security:intercept-url pattern="/showaccount" access="isAuthenticated()" />
- 		<security:intercept-url pattern="/editaccount" access="isAuthenticated()" />
- 		<security:intercept-url pattern="/orderhistory" access="isAuthenticated()" />
- 		<security:intercept-url pattern="/registered" access="isAuthenticated()" />
+ 		<security:intercept-url pattern="/showaccount" access="hasRole('ROLE_CUSTOMER')" />
+ 		<security:intercept-url pattern="/editaccount" access="hasRole('ROLE_CUSTOMER')" />
+ 		<security:intercept-url pattern="/orderhistory" access="hasRole('ROLE_CUSTOMER')" />
+ 		<security:intercept-url pattern="/registered" access="hasRole('ROLE_CUSTOMER')" />
  		
  		
  		<!--URL'ene nedenfor vil være tilgjengelig for alle, uten pålogging  -->
@@ -35,34 +43,22 @@
  		<security:intercept-url pattern="/signin" access="permitAll" />
 		<security:intercept-url pattern="/registercustomer" access="permitAll" />
 		<security:intercept-url pattern="/displayRegistration" access="permitAll" />
-<<<<<<< HEAD
 		<security:intercept-url pattern="/showcustomers" access="permitAll" />		
 		<security:intercept-url pattern="/denied" access="permitAll" />
 		<security:intercept-url pattern="/error" access="permitAll" />
+		<security:intercept-url pattern="/loggedout" access="permitAll" />
+		<security:intercept-url pattern="/logout" access="permitAll" />
 
-=======
-<security:intercept-url pattern="/showcustomers" access="permitAll" />		
-<security:intercept-url pattern="/denied" access="permitAll" />
-<security:intercept-url pattern="/error" access="permitAll" />
-<security:intercept-url pattern="/registeritem" access="permitAll" />
->>>>>>> d48fd4a6111a327cfcbec442d24bb80b8bb2805b
 
 
 		<!--Alt annet er denied -->
-
-
-		
-		
-		
-		<!--Alt annet er denied  -->
-
 		<security:intercept-url pattern="/**" access="denyAll" />
 
 
 		<!--loginfunksjonalitet  -->
-		<security:form-login login-page="/login"
+		<security:form-login login-page="/signin"
 			authentication-failure-url="/signin?error=true" />
-		<security:logout logout-success-url="/loggedout" />
+		<security:logout logout-success-url="/logout" />
 		<security:access-denied-handler	error-page="/denied" />
 
 	</security:http>
