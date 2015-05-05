@@ -13,4 +13,16 @@ public class LoginController {
 	public String displayLoginPage(){
 		return "login";
 	}
+	
+	
+	//Viser loginsiden
+	@RequestMapping(value="/logout")
+	public String displayLoggedOut(){
+		return "loggedout";
+	}
+	
+	@RequestMapping(value="/denied")
+	public String displayDenied(){
+		return "denied";
+	}
 }

@@ -7,16 +7,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="${pageContext.request.contextPath}/static/css/main.css"	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/static/css/main.css"
+	rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Spring Project</title>
 </head>
 <body>
 
-<div id="nav">
-	<span class="menuitem">
-		<a href="${pageContext.request.contextPath}/">Home</a>
-		<a href="${pageContext.request.contextPath}/displayRegistration">Register</a>
-		<a href="${pageContext.request.contextPath}/showcustomers">Show Customers</a>
-	</span>
-</div>
+	<div id="nav">
+		<span class="menuitem"> <a
+			href="${pageContext.request.contextPath}/">Home</a> <a
+			href="${pageContext.request.contextPath}/displayRegistration">Register</a>
+			<a href="${pageContext.request.contextPath}/showcustomers">Show
+				Customers</a> <a href="${pageContext.request.contextPath}/signin">Login</a>
+			<%-- <a href="<c:url value="logout"/>">Log out</a> --%> 
+			
+			<c:url var="logoutUrl" value="/logout" />
+			<form id="logoutform" action="${logoutUrl}" method="post">
+				<!-- <input type="submit" value="Log out" />  -->
+				
+				<a href="javascript:{}" onclick="document.getElementById('logoutform').submit();">Log out</a>
+				
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			</form>
+		</span>
+	</div>

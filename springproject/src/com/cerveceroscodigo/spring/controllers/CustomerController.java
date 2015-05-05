@@ -66,8 +66,8 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/showaccount")
-	public Customer showAccount(Model model){
-		return null;
+	public String showAccount(Model model){
+		return "showaccount";
 	}
 	
 	@RequestMapping("/editaccount")
