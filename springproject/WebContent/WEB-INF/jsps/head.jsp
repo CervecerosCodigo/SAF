@@ -21,6 +21,7 @@
 
 			<a href="${pageContext.request.contextPath}/">Home</a> 
 			<a href="${pageContext.request.contextPath}/displayUserRegistration">Register</a>
+			<a href="${pageContext.request.contextPath}/showItems">Products</a>
 
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
 				<a href="${pageContext.request.contextPath}/showCustomers">Show	Customers</a> 
