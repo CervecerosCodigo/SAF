@@ -2,7 +2,7 @@ package com.cerveceroscodigo.spring.controllers;
 
 import java.util.List;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,22 +22,20 @@ public class ItemController {
 	ItemService items;
 
 
-	@RequestMapping(value = "/registerItem", method = RequestMethod.GET)
+	@RequestMapping(value="/newitem", method = RequestMethod.GET)
 	public String displayItemRegistration(Model model) {
-
-		model.addAttribute("item", new Item());
-		return "registerItem";
+			model.addAttribute("item", new Item());
+		return "registeritem";
 	}
 
 	
-	@RequestMapping(value = "/registerItem", method = RequestMethod.POST)
-	public String createItem(Model model, @Valid Item item, BindingResult result) {
-		System.out.println("createItem");
+	@RequestMapping(value="/newitem", method = RequestMethod.POST)
+	public String createItem(Model model, Item item, BindingResult result) {
 		if (!result.hasErrors()) {
 			items.create(item); //@TODO: Denne må endres til at den returnerer boole
-			return "registeredItem"; // ref to page if registered
+			return "registereditem"; // ref to page if registered
 		}
-		return "registerItem"; // ref to the regsitering page
+		return "registeritem"; // ref to the regsitering page
 	}
 
 	
