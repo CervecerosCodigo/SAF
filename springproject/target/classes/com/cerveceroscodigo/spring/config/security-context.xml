@@ -30,7 +30,7 @@
  		
  		<!--URL'ene nedenfor er bare tilgjengelig for de som er pålogget/autentisert  -->
  		<security:intercept-url pattern="/account" access="hasRole('ROLE_CUSTOMER')" />
- 		<security:intercept-url pattern="/showAccount" access="hasRole('ROLE_CUSTOMER')" />
+ 		<security:intercept-url pattern="/showAccount" access="isAuthenticated()" />
  		<security:intercept-url pattern="/editAccount" access="hasRole('ROLE_CUSTOMER')" />
  		<security:intercept-url pattern="/orderHistory" access="hasRole('ROLE_CUSTOMER')" />
  		<security:intercept-url pattern="/registered" access="hasRole('ROLE_CUSTOMER')" />
