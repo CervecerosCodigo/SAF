@@ -18,21 +18,24 @@
 		<span class="menuitem"> 
 			<a href="${pageContext.request.contextPath}/">Home</a> 
 			<a href="${pageContext.request.contextPath}/displayUserRegistration">Register</a>
-			
+
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
 				<a href="${pageContext.request.contextPath}/showCustomers">Show	Customers</a> 
 				<a href="${pageContext.request.contextPath}/registerItem">New item</a>
 			</sec:authorize>
 			
 			
+			<sec:authorize access="!isAuthenticated()">
+				<a href="${pageContext.request.contextPath}/signin">Login</a>
+			</sec:authorize>
 			
-			<a href="${pageContext.request.contextPath}/signin">Login</a>
-
+						
 			
-			
-			<form id="logoutform" action="<c:url value="/logout" />" method="post">
-				<a href="javascript:{}" onclick="document.getElementById('logoutform').submit();">Log out</a>
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			</form>
+			<sec:authorize access="isAuthenticated()"> 
+				<form id="logoutform" action="<c:url value="/logout" />" method="post">
+					<a href="javascript:{}" onclick="document.getElementById('logoutform').submit();">Log out</a>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				</form>
+			</sec:authorize>			
 		</span>
 	</div>
