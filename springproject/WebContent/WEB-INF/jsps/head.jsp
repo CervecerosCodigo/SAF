@@ -39,12 +39,13 @@
 			<sec:authentication property="principal.username" var="username" />
 				<form id="logoutform" action="<c:url value="/logout" />" method="post">
 					<a href="javascript:{}" onclick="document.getElementById('logoutform').submit();">Log out</a>
+					<br><a style="font-weight: lighter;" href="${pageContext.request.contextPath}/showaccount">My Account</a>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
 			</sec:authorize>		
 			
 			<sec:authorize access="isAuthenticated()">
-				Hello ${username}
+				<!-- Hello ${username} -->
 			</sec:authorize>			
 
 	</div>
