@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
@@ -49,10 +50,12 @@ public class Customer {
 	@Column(name="email")
 	private String email;
 	
-	@Size(min=8, max=50, message="Password must be between 5 and 50 characters")
-	@Column(name="password")
-	private String password;
+
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="username")
+	private User user;
+
 	@Valid
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="post_number")
@@ -67,19 +70,25 @@ public class Customer {
 		
 	}
 	
-	public Customer(String firstname, String lastname, String address1,
-			String address2, String phone, String email,
-			String password, Post post) {
+
+
+	public Customer(int idCustomer, String firstname, String lastname,
+			String address1, String address2, String phone, String email,
+			User user, Post post, List<Orders> orders) {
 		super();
+		this.idCustomer = idCustomer;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.address1 = address1;
 		this.address2 = address2;
 		this.phone = phone;
 		this.email = email;
-		this.password = password;
+		this.user = user;
 		this.post = post;
+		this.orders = orders;
 	}
+
+
 
 	public int getIdCustomer() {
 		return idCustomer;
@@ -137,14 +146,6 @@ public class Customer {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public Post getPost() {
 		return post;
 	}
@@ -161,14 +162,29 @@ public class Customer {
 		this.orders = orders;
 	}
 
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Customer [idCustomer=" + idCustomer + ", firstname="
 				+ firstname + ", lastname=" + lastname + ", address1="
 				+ address1 + ", address2=" + address2 + ", phone=" + phone
-				+ ", email=" + email + ", password=" + password + ", post="
-				+ post + ", orders=" + orders + "]";
+				+ ", email=" + email + ", user=" + user + ", post=" + post
+				+ ", orders=" + orders + "]";
 	}
+
 
 
 	

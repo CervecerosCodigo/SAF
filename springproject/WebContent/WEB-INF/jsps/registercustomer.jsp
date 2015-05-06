@@ -39,7 +39,7 @@
 			</tr>
 			<tr>
 				<td class="label">Password:</td>
-				<td><sf:input class="control" path="password" name="password" type="password"/><br><sf:errors path="password" cssClass="error"></sf:errors></td>
+				<td><sf:input class="control" path="user.password" name="password" type="password"/><br><sf:errors path="user.password" cssClass="error"></sf:errors></td>
 			</tr>
 			<tr>
 			<td class="label"></td>

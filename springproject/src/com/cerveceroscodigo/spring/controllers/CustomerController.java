@@ -11,8 +11,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cerveceroscodigo.spring.dao.Authority;
 import com.cerveceroscodigo.spring.dao.Customer;
 import com.cerveceroscodigo.spring.dao.Post;
+import com.cerveceroscodigo.spring.dao.User;
+import com.cerveceroscodigo.spring.service.AuthorityService;
 import com.cerveceroscodigo.spring.service.CustomerService;
 
 @Controller
@@ -21,6 +24,9 @@ public class CustomerController {
 	@Autowired
 	CustomerService customers;
 
+	@Autowired
+	AuthorityService authorities;
+	
 	/**
 	 * Denne metoden viser registreringssiden for der kunden kan registrere seg.
 	 * Den har to attributter som "holder" på dataene. Det vil si at om validering 
@@ -32,6 +38,8 @@ public class CustomerController {
 	public String displayRegistration(Model model){
 		model.addAttribute("post", new Post());
 		model.addAttribute("customer", new Customer());
+		model.addAttribute("user", new User());
+		
 		return "registercustomer";
 	}
 	
@@ -45,15 +53,30 @@ public class CustomerController {
 	 * @param result
 	 * @return
 	 */
-	@RequestMapping(value="/registerCustomer", method=RequestMethod.POST)
+	@RequestMapping(value="/registercustomer", method=RequestMethod.POST)
 	public String registerCustomer(Model model, @Valid Customer customer, BindingResult result){
 		
 		if(!result.hasErrors()){
+			customer.getUser().setEnabled(1);
+			customer.getUser().setUsername(customer.getEmail());
+			
+			
+			Authority auth = new Authority();
+			auth.setUsername(customer.getEmail());
+			auth.setAuthority("customer");
+			
+			System.out.println(customer);
+			System.out.println(auth);
+			
+			if(!authorities.exists(auth.getUsername()))
+				authorities.create(auth);
+
 			if(customers.createCustomer(customer)){
+				
 				return "registered";	
 			}
 		}
-		return "registerCustomer";
+		return "registercustomer";
 	}
 	
 	@RequestMapping(value="/findcustomer")
