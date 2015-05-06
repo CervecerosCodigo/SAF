@@ -29,13 +29,18 @@
 				<a href="${pageContext.request.contextPath}/signin">Login</a>
 			</sec:authorize>
 			
-						
+			
 			
 			<sec:authorize access="isAuthenticated()"> 
+			<sec:authentication property="principal.username" var="username" />
 				<form id="logoutform" action="<c:url value="/logout" />" method="post">
 					<a href="javascript:{}" onclick="document.getElementById('logoutform').submit();">Log out</a>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
+			</sec:authorize>		
+			
+			<sec:authorize access="isAuthenticated()">
+				Hello ${username}
 			</sec:authorize>			
 		</span>
 	</div>
