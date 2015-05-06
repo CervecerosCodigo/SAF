@@ -49,8 +49,9 @@
 		<security:intercept-url pattern="/displayUserRegistration" access="permitAll" />
 		<security:intercept-url pattern="/registerCustomer" access="permitAll" />
 		<security:intercept-url pattern="/showItems" access="permitAll" />
-		<security:intercept-url pattern="/registeritem" access="permitAll" />
-		<security:intercept-url pattern="registereditem" access="permitAll" />
+		<security:intercept-url pattern="/registerItem" access="permitAll" />
+		<security:intercept-url pattern="/registeredItem" access="permitAll" />
+		<security:intercept-url pattern="/showItems" access="permitAll" />
 
 
 		<!--Alt annet er denied -->
