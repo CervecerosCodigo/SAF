@@ -34,7 +34,7 @@ public class ItemController {
 		System.out.println("createItem");
 		if (!result.hasErrors()) {
 			items.create(item); //@TODO: Denne må endres til at den returnerer boole
-			return "registered"; // ref to page if registered
+			return "registeredItem"; // ref to page if registered
 		}
 		return "registerItem"; // ref to the regsitering page
 	}
