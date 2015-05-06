@@ -121,7 +121,7 @@ public class CustomerController {
 	private Authority generateAuthorityFromCustomer(Customer c){
 		Authority auth = new Authority();
 		auth.setUsername(c.getEmail());
-		auth.setAuthority("customer");	//Hard coding authority for customer
+		auth.setAuthority("ROLE_USER");	//Hard coding authority for customer
 		return auth;
 	}
 	
