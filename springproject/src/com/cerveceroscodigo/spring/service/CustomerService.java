@@ -40,8 +40,16 @@ public class CustomerService {
 		return customerDao.exists(id);
 	}
 	
+	public boolean exists(String email){
+		return customerDao.exists(email);
+	}
 	
 	public Customer getCustomerById(int id){
 		return customerDao.getCustomer(id);
 	}
+	
+	public Customer getCustomerByUsername(String email){
+		return customerDao.findCustomerByEmail(email);
+	}
 }
+

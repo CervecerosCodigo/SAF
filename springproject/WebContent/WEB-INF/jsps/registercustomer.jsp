@@ -35,16 +35,20 @@
 				<td class="label">Email:</td>
 				<td><sf:input class="control" path="email" name="email" type="text"/><br><sf:errors path="email" cssClass="error"></sf:errors></td>
 			</tr>
-			<%-- <tr>
+			<tr>
 				<td class="label">Password:</td>
-				<td><sf:input class="control" path="user.password" name="password" type="password"/><br><sf:errors path="user.password" cssClass="error"></sf:errors></td>
-			</tr> --%>
+				<td><sf:input class="control" path="password" name="password" type="password"/><br><sf:errors path="password" cssClass="error"></sf:errors></td>
+			</tr>
 			<tr>
 			<td class="label"></td>
 			<td><input class="control" name="Register" type="submit"/></td>
 			</tr>
 		</table>
-	
+		<div class="error">
+			<c:if test="${exists != null}"> 
+				<c:out value="${exists}"></c:out>
+			</c:if>  
+		</div>
 	</sf:form>
 
 
