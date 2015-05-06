@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cerveceroscodigo.spring.dao.Cart;
 import com.cerveceroscodigo.spring.dao.Item;
 import com.cerveceroscodigo.spring.service.ItemService;
 
@@ -50,6 +51,7 @@ public class ItemController {
 		List<Item> list = items.showAllItems();
 		if(list != null)
 			model.addAttribute("liste", list);
+		model.addAttribute("cart", new Cart());
 		return "showItems";
 	}
 
