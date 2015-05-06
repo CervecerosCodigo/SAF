@@ -2,6 +2,7 @@ package com.cerveceroscodigo.spring.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +18,18 @@ import com.cerveceroscodigo.spring.dao.Post;
 import com.cerveceroscodigo.spring.dao.User;
 import com.cerveceroscodigo.spring.service.AuthorityService;
 import com.cerveceroscodigo.spring.service.CustomerService;
+import com.cerveceroscodigo.spring.service.UserService;
 
 @Controller
 public class CustomerController {
 
 	@Autowired
 	CustomerService customers;
-
 	@Autowired
 	AuthorityService authorities;
+	@Autowired
+	UserService users;
+	
 	
 	/**
 	 * Denne metoden viser registreringssiden for der kunden kan registrere seg.
@@ -57,22 +61,26 @@ public class CustomerController {
 	public String registerCustomer(Model model, @Valid Customer customer, BindingResult result){
 		
 		if(!result.hasErrors()){
-			customer.getUser().setEnabled(1);
-			customer.getUser().setUsername(customer.getEmail());
-			
 			
 			Authority auth = new Authority();
 			auth.setUsername(customer.getEmail());
 			auth.setAuthority("customer");
 			
+			User user = new User();
+			user.setPassword("letmein");
+			user.setUsername(customer.getEmail());
+			user.setEnabled(1);
+			
 			System.out.println(customer);
 			System.out.println(auth);
+			System.out.println(user);
 			
 			if(!authorities.exists(auth.getUsername()))
 				authorities.create(auth);
-
+			if(!users.exists(user.getUsername()))
+				users.create(user);
+			
 			if(customers.createCustomer(customer)){
-				
 				return "registered";	
 			}
 		}

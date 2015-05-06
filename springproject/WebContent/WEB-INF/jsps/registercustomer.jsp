@@ -37,10 +37,10 @@
 				<td class="label">Email:</td>
 				<td><sf:input class="control" path="email" name="email" type="text"/><br><sf:errors path="email" cssClass="error"></sf:errors></td>
 			</tr>
-			<tr>
+			<%-- <tr>
 				<td class="label">Password:</td>
 				<td><sf:input class="control" path="user.password" name="password" type="password"/><br><sf:errors path="user.password" cssClass="error"></sf:errors></td>
-			</tr>
+			</tr> --%>
 			<tr>
 			<td class="label"></td>
 			<td><input class="control" name="Register" type="submit"/></td>

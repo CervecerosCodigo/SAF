@@ -50,12 +50,7 @@ public class Customer {
 	@Column(name="email")
 	private String email;
 	
-
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="username")
-	private User user;
-
 	@Valid
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="post_number")
@@ -74,7 +69,7 @@ public class Customer {
 
 	public Customer(int idCustomer, String firstname, String lastname,
 			String address1, String address2, String phone, String email,
-			User user, Post post, List<Orders> orders) {
+			Post post, List<Orders> orders) {
 		super();
 		this.idCustomer = idCustomer;
 		this.firstname = firstname;
@@ -83,7 +78,6 @@ public class Customer {
 		this.address2 = address2;
 		this.phone = phone;
 		this.email = email;
-		this.user = user;
 		this.post = post;
 		this.orders = orders;
 	}
@@ -163,25 +157,12 @@ public class Customer {
 	}
 
 
-
-	public User getUser() {
-		return user;
-	}
-
-
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-
-
 	@Override
 	public String toString() {
 		return "Customer [idCustomer=" + idCustomer + ", firstname="
 				+ firstname + ", lastname=" + lastname + ", address1="
 				+ address1 + ", address2=" + address2 + ", phone=" + phone
-				+ ", email=" + email + ", user=" + user + ", post=" + post
+				+ ", email=" + email + ", post=" + post
 				+ ", orders=" + orders + "]";
 	}
 
