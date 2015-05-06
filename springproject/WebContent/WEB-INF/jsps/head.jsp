@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <!-- brukes for å hente lengde til arraylist -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -47,9 +48,9 @@
 			<sec:authorize access="isAuthenticated()">
 
 				<!-- Hello ${username} -->
-				
+				<%-- 
 				<c:out value="${cart.sillyName}"></c:out>
-				<c:out value="${cart.cartId}"></c:out>
+				<c:out value="${cart.cartId}"></c:out> --%>
 
 			</sec:authorize>			
 

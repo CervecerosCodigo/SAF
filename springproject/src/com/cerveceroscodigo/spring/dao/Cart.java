@@ -3,12 +3,13 @@ package com.cerveceroscodigo.spring.dao;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.List;
 
 
 public class Cart {
 	
 	private long cartId;
-	private ArrayList<Item> cartItems; //tillater dobble entrys hvilket er nice
+	private List<Item> cartItems; //tillater dobble entrys hvilket er nice
 	private Customer owner;
 	private String sillyName = "Kundevogn!"; //For testing
 	
@@ -18,6 +19,7 @@ public class Cart {
 	public Cart(){
 		this.cartId = Calendar.getInstance().getTimeInMillis();
 		cartItems = new ArrayList<Item>();
+		cartItems.add(new Item());
 	}
 	
 	public Cart(Customer customer){
@@ -62,7 +64,7 @@ public class Cart {
 		return owner;
 	}
 	
-	public ArrayList<Item> getCartItems(){
+	public List<Item> getCartItems(){
 		return cartItems;
 	}
 	
