@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
@@ -50,6 +49,9 @@ public class Customer {
 	@Column(name="email")
 	private String email;
 	
+	@Size(min=6, message="The password must be at least 5 characters long")
+	@Column(name="password")
+	private String password;
 	
 	@Valid
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -68,7 +70,7 @@ public class Customer {
 
 
 	public Customer(int idCustomer, String firstname, String lastname,
-			String address1, String address2, String phone, String email,
+			String address1, String address2, String phone, String email, String password,
 			Post post, List<Orders> orders) {
 		super();
 		this.idCustomer = idCustomer;
@@ -78,6 +80,7 @@ public class Customer {
 		this.address2 = address2;
 		this.phone = phone;
 		this.email = email;
+		this.password = password;
 		this.post = post;
 		this.orders = orders;
 	}
@@ -157,14 +160,29 @@ public class Customer {
 	}
 
 
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Customer [idCustomer=" + idCustomer + ", firstname="
 				+ firstname + ", lastname=" + lastname + ", address1="
 				+ address1 + ", address2=" + address2 + ", phone=" + phone
-				+ ", email=" + email + ", post=" + post
-				+ ", orders=" + orders + "]";
+				+ ", email=" + email + ", password=" + password + ", post="
+				+ post + ", orders=" + orders + "]";
 	}
+
+
 
 
 

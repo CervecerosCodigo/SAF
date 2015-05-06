@@ -62,14 +62,20 @@ public class CustomerDao {
 		return c != null;
 	}
 	
-	private Customer findCustomerByEmail(String e){
+	public boolean exists(String email){
+		return findCustomerByEmail(email) != null;
+	}
+	
+	//Helper method, returning Customer object if found by email
+	public Customer findCustomerByEmail(String e){
 		Criteria crit = session().createCriteria(Customer.class);
 		crit.add(Restrictions.eq("email", e));
 		Customer c = (Customer)crit.uniqueResult();
 		return c;
 	}
 	
-	private Customer findCustomerById(int id){
+	//Helper method, returning Customer object if found by id
+	public Customer findCustomerById(int id){
 		Criteria crit = session().createCriteria(Item.class);
 		crit.add(Restrictions.idEq(id));
 		Customer c = (Customer)crit.uniqueResult();

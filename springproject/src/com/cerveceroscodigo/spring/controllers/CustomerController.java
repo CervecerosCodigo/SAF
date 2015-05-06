@@ -2,7 +2,6 @@ package com.cerveceroscodigo.spring.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +41,6 @@ public class CustomerController {
 	public String displayRegistration(Model model){
 		model.addAttribute("post", new Post());
 		model.addAttribute("customer", new Customer());
-		model.addAttribute("user", new User());
 		
 		return "registercustomer";
 	}
@@ -62,21 +60,19 @@ public class CustomerController {
 		
 		if(!result.hasErrors()){
 			
-			Authority auth = new Authority();
-			auth.setUsername(customer.getEmail());
-			auth.setAuthority("customer");
+			//Checks if username exists, and notifies customer if it does
+			if(customers.exists(customer.getEmail())){
+				model.addAttribute("exists", "The username exists, try another one!");
+				return "registercustomer";
+			}
 			
-			User user = new User();
-			user.setPassword("letmein");
-			user.setUsername(customer.getEmail());
-			user.setEnabled(1);
-			
-			System.out.println(customer);
-			System.out.println(auth);
-			System.out.println(user);
+			Authority auth = generateAuthorityFromCustomer(customer);
+			User user = generateUserFromCustomer(customer);
+
 			
 			if(!authorities.exists(auth.getUsername()))
 				authorities.create(auth);
+			
 			if(!users.exists(user.getUsername()))
 				users.create(user);
 			
@@ -84,13 +80,13 @@ public class CustomerController {
 				return "registered";	
 			}
 		}
+		//Errors in validation has occured. Returning to registration form
 		return "registercustomer";
 	}
 	
 	@RequestMapping(value="/findcustomer")
-	public String getCustomerByID(Model model, int id){
-		
-		Customer c = customers.getCustomerById(id);
+	public String getCustomerByUsername(Model model, String username){
+		Customer c = customers.getCustomerByUsername(username);
 		if(c != null)
 			model.addAttribute("customer", c);
 		return "displaycustomer";
@@ -119,4 +115,20 @@ public class CustomerController {
 		return "customers";
 	}
 	
+	
+	
+	private Authority generateAuthorityFromCustomer(Customer c){
+		Authority auth = new Authority();
+		auth.setUsername(c.getEmail());
+		auth.setAuthority("customer");	//Hard coding authority for customer
+		return auth;
+	}
+	
+	private User generateUserFromCustomer(Customer c){
+		User user = new User();
+		user.setPassword(c.getPassword());
+		user.setUsername(c.getEmail());
+		user.setEnabled(1);
+		return user;
+	}
 }
