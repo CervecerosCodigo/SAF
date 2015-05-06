@@ -25,7 +25,7 @@
 
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
 				<a href="${pageContext.request.contextPath}/showCustomers">Show	Customers</a> 
-				<a href="${pageContext.request.contextPath}/registerItem">New item</a>
+				<a href="${pageContext.request.contextPath}/newitem">New item</a>
 			</sec:authorize>
 			
 			
