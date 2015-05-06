@@ -1,7 +1,5 @@
 <%@include file="head.jsp"%>
 
-<div id="container">
-
 	<h2>Please fill in the form to register your user account</h2>
 	<sf:form method="post" action="${pageContext.request.contextPath}/registercustomer" commandName="customer">
 		<table class="formtable">
@@ -49,7 +47,5 @@
 	
 	</sf:form>
 
-
-</div> <!-- End of container -->
 
 <%@include file="footer.jsp"%>

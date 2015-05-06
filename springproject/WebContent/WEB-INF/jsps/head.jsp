@@ -14,8 +14,11 @@
 </head>
 <body>
 
+<div id="overfyll"></div>
+
+<div id="container">
 	<div id="nav">
-		<span class="menuitem"> 
+
 			<a href="${pageContext.request.contextPath}/">Home</a> 
 			<a href="${pageContext.request.contextPath}/displayUserRegistration">Register</a>
 
@@ -42,5 +45,7 @@
 			<sec:authorize access="isAuthenticated()">
 				Hello ${username}
 			</sec:authorize>			
-		</span>
+
 	</div>
+	
+<div id="content">

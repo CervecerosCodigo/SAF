@@ -1,7 +1,5 @@
 <%@include file="head.jsp"%>
 
-<div id="container">
-
 	<h2>Registration</h2>
 	<br>
 	<h3>New store item</h3>
@@ -30,5 +28,5 @@
 			</tr>
 		</table>
 	</sf:form>
-</div>
+	
 <%@include file="footer.jsp"%>

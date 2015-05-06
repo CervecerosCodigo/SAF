@@ -1,7 +1,7 @@
 
 <%@include file="head.jsp"%>
 
-<div id="container" onload='document.f.j_username.focus();'>
+<div id="loginContainer" onload='document.f.username.focus();'>
 
 	<h3>Login with Username and Password</h3>
 
@@ -33,6 +33,6 @@
 		</div>
 	</c:if>
 
-</div><!-- container -->
+</div><!-- login container -->
 
 <%@include file="footer.jsp"%>
