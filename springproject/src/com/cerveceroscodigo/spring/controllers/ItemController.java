@@ -45,9 +45,12 @@ public class ItemController {
 		return null;
 	}
 
-	@RequestMapping("displayAllItems")
-	public List<Item> showAllItems() {
-		return null;
+	@RequestMapping("/showItems")
+	public String showAllItems(Model model) {
+		List<Item> list = items.showAllItems();
+		if(list != null)
+			model.addAttribute("liste", list);
+		return "showItems";
 	}
 
 	@RequestMapping("deleteItem")
