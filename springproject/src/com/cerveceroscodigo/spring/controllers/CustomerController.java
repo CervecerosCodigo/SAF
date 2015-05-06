@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cerveceroscodigo.spring.dao.Authority;
+import com.cerveceroscodigo.spring.dao.Cart;
 import com.cerveceroscodigo.spring.dao.Customer;
 import com.cerveceroscodigo.spring.dao.Post;
 import com.cerveceroscodigo.spring.dao.User;

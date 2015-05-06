@@ -45,7 +45,12 @@
 			</sec:authorize>		
 			
 			<sec:authorize access="isAuthenticated()">
+
 				<!-- Hello ${username} -->
+				
+				<c:out value="${cart.sillyName}"></c:out>
+				<c:out value="${cart.cartId}"></c:out>
+
 			</sec:authorize>			
 
 	</div>
