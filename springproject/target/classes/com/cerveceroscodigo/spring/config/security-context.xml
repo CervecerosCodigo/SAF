@@ -36,7 +36,6 @@
  		<security:intercept-url pattern="/registered" access="hasRole('ROLE_CUSTOMER')" />
 
  		<security:intercept-url pattern="/showCustomers" access="hasRole('ROLE_ADMIN')" />
- 		<security:intercept-url pattern="/registerItem" access="hasRole('ROLE_ADMIN')" />
  		
  		<!--URL'ene nedenfor vil være tilgjengelig for alle, uten pålogging  -->
  		<security:intercept-url pattern="/static/**" access="permitAll" />		<!--Tillat alle resources, som css osv  -->
@@ -50,6 +49,8 @@
 		<security:intercept-url pattern="/displayUserRegistration" access="permitAll" />
 		<security:intercept-url pattern="/registerCustomer" access="permitAll" />
 		<security:intercept-url pattern="/showItems" access="permitAll" />
+		<security:intercept-url pattern="/registeritem" access="permitAll" />
+		<security:intercept-url pattern="registereditem" access="permitAll" />
 
 
 		<!--Alt annet er denied -->
