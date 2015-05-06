@@ -30,16 +30,16 @@ public class HomeController {
 	@RequestMapping("/")
 	public String showHome(Model model){
 		
-		List<Post> post = postService.showAllPost();
-		model.addAttribute("post", post);
-		
-		List<Item> items = itemService.showAllItems();
-		model.addAttribute("items", items);
-		
-		Post p = new Post("1100", "Oslo");
-		Customer c = new Customer("Anders", "Jacobsen", "Drammensveien 1", "", "90054600", "anders@online.no", "123468", p);
-		customerService.createCustomer(c);
-		
+//		List<Post> post = postService.showAllPost();
+//		model.addAttribute("post", post);
+//		
+//		List<Item> items = itemService.showAllItems();
+//		model.addAttribute("items", items);
+//		
+//		Post p = new Post("1100", "Oslo");
+//		Customer c = new Customer("Anders", "Jacobsen", "Drammensveien 1", "", "90054600", "anders@online.no", "123468", p);
+//		customerService.createCustomer(c);
+//		
 		return "home";
 	}
 
