@@ -1,8 +1,9 @@
 
 <%@include file="head.jsp"%>
+	
+<h2>Displaying you account,  <c:out value="${customer.firstname}"/> <c:out value="${customer.lastname}"/></h2>
 
-Displaying you account,  <c:out value="${customer.firstname}"/> <c:out value="${customer.lastname}"/>
-
+<sec:authorize access="hasRole('ROLE_USER')">	
 		<table class="formtable">
 			<tr>
 				<td class="label">First name:</td>
@@ -37,4 +38,11 @@ Displaying you account,  <c:out value="${customer.firstname}"/> <c:out value="${
 				<td><c:out value="${customer.email}"></c:out></td>
 			</tr>
 		</table>
+
+<h3>Your order history</h3>		
+
+
+		
+</sec:authorize>
+		
 <%@include file="footer.jsp"%>

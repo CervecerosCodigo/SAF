@@ -37,10 +37,14 @@
 			
 			
 			<sec:authorize access="isAuthenticated()"> 
-			<sec:authentication property="principal.username" var="uid" />
+				<sec:authentication property="principal.username" var="uid" />
 				<form id="logoutform" action="<c:url value="/logout" />" method="post">
 					<a href="javascript:{}" onclick="document.getElementById('logoutform').submit();">Log out</a>
-					<br><a style="font-weight: lighter;" href="${pageContext.request.contextPath}/showaccount">My Account</a>
+					
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<br><a style="font-weight: lighter;" href="${pageContext.request.contextPath}/showaccount">My Account</a>
+					</sec:authorize>
+					
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
 			</sec:authorize>		
