@@ -3,6 +3,7 @@ package com.cerveceroscodigo.spring.controllers;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cerveceroscodigo.spring.dao.Cart;
 import com.cerveceroscodigo.spring.dao.Item;
@@ -47,7 +49,7 @@ public class ItemController {
 	}
 
 	@RequestMapping(value="/showItems")
-	public String showAllItems(Model model) {
+	public String showAllItems(Model model, HttpSession session) {
 		List<Item> list = items.showAllItems();
 		if(list != null)
 			model.addAttribute("liste", list);
@@ -55,19 +57,11 @@ public class ItemController {
 		if(cart == null){
 			System.out.println("Legger til en ny vogn");
 			cart = new Cart();
+			session.setAttribute("cart", cart);
 			model.addAttribute("cart", cart);
 		}else{
 			model.addAttribute("cart", cart);
 			System.out.println("Det finnes en kundevogn fra før.");
-			
-			/*
-			 * Her kan det i teorien komme kode som legger ting i kundevognen
-			 */
-			//cart.addToCart(new Item());
-//			cart.addToCart(item);
-//			
-//			System.out.println("Content of the cart:");
-//			System.out.println(cart.toString());
 		}
 		return "showItems";
 	}
@@ -81,6 +75,7 @@ public class ItemController {
 	public String addItemToCart(@ModelAttribute Item item){
 		
 		cart.addToCart(item);
+		
 		
 		System.out.println("Content of the cart:");
 		System.out.println(cart.toString());
