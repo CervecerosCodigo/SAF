@@ -3,6 +3,7 @@ package com.cerveceroscodigo.spring.controllers;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cerveceroscodigo.spring.dao.Authority;
+import com.cerveceroscodigo.spring.dao.Cart;
 import com.cerveceroscodigo.spring.dao.Customer;
 import com.cerveceroscodigo.spring.dao.Post;
 import com.cerveceroscodigo.spring.dao.User;
@@ -30,6 +32,8 @@ public class CustomerController {
 	AuthorityService authorities;
 	@Autowired
 	UserService users;
+	
+	Cart cart;
 	
 	
 	/**
@@ -102,6 +106,20 @@ public class CustomerController {
 			model.addAttribute("customer", c);
 		}
 		return "showaccount";
+	}
+	
+	@RequestMapping(value="/checkout")
+	public String checkoutCart(Model model, HttpSession session, Principal principal){
+		String username = principal.getName();
+		Customer c = customers.getCustomerByUsername(username);
+		
+		cart = (Cart) session.getAttribute("cart");
+		
+		if(c != null){
+			model.addAttribute("customer", c);
+		}
+		
+		return "checkout";
 	}
 
 	

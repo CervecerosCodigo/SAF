@@ -23,6 +23,7 @@
 			<td><c:out value="${cart.totalPrice}"></c:out></td>
 		</tr>
 	</table>
+	<a href="${pageContext.request.contextPath}/checkout">Checkout</a>
 </div>
 
 

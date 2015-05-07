@@ -44,6 +44,8 @@
 		<security:intercept-url pattern="/showItems" access="permitAll" />
 		<security:intercept-url pattern="/addItemToCart" access="permitAll" />
 		<security:intercept-url pattern="/showBasket" access="permitAll" />
+		<security:intercept-url pattern="/checkout" access="permitAll" />
+		<security:intercept-url pattern="/allDone" access="permitAll" />
 
 
 		<!--Alt annet er denied -->
