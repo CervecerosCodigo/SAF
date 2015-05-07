@@ -14,12 +14,13 @@ public class Cart {
 	private String sillyName = "Kundevogn!"; //For testing
 	
 	/**
-	 * Denne konstrøktørn skal slettes når alt fungerer.
+	 * Må nok beholde denne konstruktøren ettersom Spring aksesserer alle datafelt 
+	 * direkte uten setters også når de er innkapsulert som private.
 	 */
 	public Cart(){
 		this.cartId = Calendar.getInstance().getTimeInMillis();
 		cartItems = new ArrayList<Item>();
-		cartItems.add(new Item());
+//		cartItems.add(new Item()); //brukte denne til å legge inn en dummy vare
 	}
 	
 	public Cart(Customer customer){

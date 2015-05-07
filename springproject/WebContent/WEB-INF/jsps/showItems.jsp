@@ -3,15 +3,15 @@
 
 <div>
 	<hr>
-	Id for kundevogn:
-	<b><c:out value="${cart.cartId}"></c:out></b>
+	Id for kundevogn: <b><c:out value="${cart.cartId}"></c:out></b>
 	<%-- Antall varer i vogn: <c:out value="${cart.cartItems.size}"></c:out> --%>
-	<br> Antall varer i kundevogn: <b> ${fn:length(cart.cartItems)} </b> 
-	<br><i>Kommer med en standard vare fra start for debugging.</i><br> <br>
+	<br> Antall varer i kundevogn: <b>
+		${fn:length(cart.cartItems)} </b> <br> <i>Kommer med en standard
+		vare fra start for debugging.</i><br> <br>
 </div>
 
 
-<div>
+<%-- <div>
 	<hr>
 	<sf:form method="get"
 		action="${pageContext.request.contextPath}/showItems"
@@ -34,7 +34,7 @@
 					<td><c:out value="${item.description}"></c:out></td>
 					<td><c:out value="${item.priceIn}"></c:out></td>
 					<td><c:out value="${item.numInStock}"></c:out></td>
-					<%-- <td><sf:checkboxes items="${liste}" path="purchase"/></td> --%>
+					<td><sf:checkboxes items="${liste}" path="purchase"/></td>
 					<td><input type="checkbox" name="${item.id}"></td>
 				</tr>
 			</c:forEach>
@@ -81,6 +81,39 @@
 			</tr>
 		</table>
 	</sf:form>
+</div> --%>
+
+<div>
+	<br>
+	<hr>
+	<p>Tester her å bruke hver enkle rad som en form, slik at man unngå
+		å pakka inn disse i en liste.</p>
+	<table>
+		<tr>
+			<td>Id</td>
+			<td>Type</td>
+			<td>Description</td>
+			<td>Price</td>
+			<td>Avilable</td>
+			<td>Add to cart</td>
+		</tr>
+
+
+		<c:forEach var="item" items="${liste}">
+			<tr>
+				<sf:form method="get"
+					action="${pageContext.request.contextPath}/showItems"
+					commandName="item">
+					<td><input type="text" name="id" value="<c:out value="${item.id}"></c:out>"></td>
+					<td><input type="text" name="type" value="<c:out value="${item.type}"></c:out>"></td>
+					<td><input type="text" name="description" value="<c:out value="${item.description}"></c:out>"></td>
+					<td><input type="text" name="priceIn" value="<c:out value="${item.priceIn}"></c:out>"></td>
+					<td><input type="text" name="numInStock" value="<c:out value="${item.numInStock}"></c:out>"></td>
+					<td><input name="send" value="Add to card" type="submit"></td>
+				</sf:form>
+			</tr>
+		</c:forEach>
+	</table>
 </div>
 
 <%@include file="footer.jsp"%>
