@@ -2,6 +2,8 @@ package com.cerveceroscodigo.spring.dao;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 
 @Repository
 @Transactional
@@ -53,8 +56,18 @@ public class CustomerDao {
 			return false;
 	}
 	
-	public boolean updateCustomer(Customer customer){
-		return false;
+	/**
+	 * To update a customer we need to make sure that the updated object has 
+	 * the same id as the one in the database. Otherwise the update will be an insert..
+	 * @param customer
+	 */
+	public void updateCustomer(Customer customer){
+		Customer orgCust = findCustomerByEmail(customer.getEmail());
+		if(orgCust != null){
+			int orgCustId = orgCust.getIdCustomer();
+			customer.setIdCustomer(orgCustId);
+			session().merge(customer);
+		}
 	}
 	
 	public boolean exists(int id){

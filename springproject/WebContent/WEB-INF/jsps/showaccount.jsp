@@ -5,7 +5,7 @@
 
 <sec:authorize access="hasRole('ROLE_USER')">	
 
-	<sf:form method="post" action="${pageContext.request.contextPath}/updatecustomer" commandName="customer">
+	<sf:form method="post" action="${pageContext.request.contextPath}/editaccount" commandName="customer">
 
 	<table class="formtable">
 			<tr>

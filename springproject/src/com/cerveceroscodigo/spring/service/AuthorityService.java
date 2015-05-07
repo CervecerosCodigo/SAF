@@ -26,4 +26,8 @@ public class AuthorityService {
 	public boolean exists(String  epost){
 		return authorityDao.exists(epost);
 	}
+	
+	public void updateAuthority(Authority a){
+		authorityDao.updateAuthority(a);
+	}
 }

@@ -23,7 +23,7 @@
  		<!--URL'ene nedenfor er bare tilgjengelig for de som er pålogget/autentisert  -->
  		<security:intercept-url pattern="/account" access="hasRole('ROLE_USER')" />
  		<security:intercept-url pattern="/showaccount" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" />
- 		<security:intercept-url pattern="/editAccount" access="hasRole('isAuthenticated()')" />
+ 		<security:intercept-url pattern="/editAccount" access="hasRole('ROLE_USER')" />
  		<security:intercept-url pattern="/orderHistory" access="hasRole('isAuthenticated()')" />
  		<security:intercept-url pattern="/registered" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/newitem" access="hasRole('ROLE_ADMIN')" />
