@@ -32,8 +32,8 @@ public class CustomerService {
 		return customerDao.deleteCustomer(id);
 	}
 	
-	public boolean updateCustomer(Customer customer){
-		return customerDao.updateCustomer(customer);
+	public void updateCustomer(Customer customer){
+		customerDao.updateCustomer(customer);
 	}
 	
 	public boolean exists(int id){

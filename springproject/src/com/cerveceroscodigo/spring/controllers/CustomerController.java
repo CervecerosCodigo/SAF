@@ -105,9 +105,22 @@ public class CustomerController {
 	}
 
 	
-	@RequestMapping("/editaccount")
-	public void editCustomer(Model model){
-		
+	@RequestMapping(value="/editaccount", method=RequestMethod.POST)
+	public String editCustomer(Model model, @Valid Customer customer, BindingResult result ){
+		if(!result.hasErrors()){
+			customers.updateCustomer(customer);
+			
+			Authority auth = generateAuthorityFromCustomer(customer);
+			User user = generateUserFromCustomer(customer);
+			
+			/**
+			 * The following two doesn't work with email update.!!
+			 * **/
+			authorities.updateAuthority(auth);
+			users.updateUser(user);
+			
+		}
+		return "showaccount";
 	}
 	
 	@RequestMapping("/orderhistory")

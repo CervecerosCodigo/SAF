@@ -27,9 +27,12 @@ public class UserDao {
 	
 	public boolean exists(String epost){
 		Criteria crit = session().createCriteria(User.class);
-//		crit.add(Restrictions.eq("postNumber", postNr));
 		crit.add(Restrictions.idEq(epost));
 		User u = (User) crit.uniqueResult();
 		return u != null;
+	}
+	
+	public void updateUser(User u){
+		session().update(u);
 	}
 }

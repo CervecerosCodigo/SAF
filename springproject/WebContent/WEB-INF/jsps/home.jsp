@@ -17,7 +17,7 @@ and other obstacles has made us reevaluate how much working functionality we can
 
 <h4>What is implemented</h4>
 <ul>
-	<li>A simple database schema that has at least one functional many-to-one relationship, implemented using Hibernate.
+	<li>A simple database schema that has at least one functional many-to-one relationship, implemented using Hibernate. (Cust to Post).
 		<ul>
 			<li>All POJO entities are configured using Annotations.</li>
 			<li>Each Entity has its own Dao-class that handles the Hibernate queries.</li>
@@ -56,7 +56,7 @@ and other obstacles has made us reevaluate how much working functionality we can
 			</li>
 			<li>User/Customer
 				<ul>
-					<li>At this point, the customer can access his/her own account page and change any information there.</li>
+					<li>At this point, the customer can access his/her own account page and change any information there. There is a bug related to updating username/email</li>
 					<li>Order history is not finished, and is therefore not enabled in the users' account page</li>
 				</ul>
 			</li>

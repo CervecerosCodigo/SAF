@@ -31,4 +31,8 @@ public class AuthorityDao {
 		Authority a = (Authority) crit.uniqueResult();
 		return a != null;
 	}
+	
+	public void updateAuthority(Authority a){
+		session().update(a);
+	}
 }
