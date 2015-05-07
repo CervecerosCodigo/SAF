@@ -114,6 +114,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<a href="${pageContext.request.contextPath}/showBasket">Go to basket</a> 
 </div>
 
 <%@include file="footer.jsp"%>
