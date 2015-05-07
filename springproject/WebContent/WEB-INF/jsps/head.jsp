@@ -9,6 +9,7 @@
 <html>
 <head>
 <link href="${pageContext.request.contextPath}/static/css/main.css"	rel="stylesheet" type="text/css">
+<script src="${pageContext.request.contextPath}/static/script/script.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Spring Project</title>
 </head>

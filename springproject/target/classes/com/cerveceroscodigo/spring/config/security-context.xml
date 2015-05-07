@@ -46,7 +46,7 @@
 
 
 		<!--Alt annet er denied -->
-		<security:intercept-url pattern="/**" access="denyAll" />
+		<!-- <security:intercept-url pattern="/**" access="denyAll" /> -->
 
 
 		<!--loginfunksjonalitet  -->
