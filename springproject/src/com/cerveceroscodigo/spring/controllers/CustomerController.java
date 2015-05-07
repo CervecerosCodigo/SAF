@@ -1,5 +1,6 @@
 package com.cerveceroscodigo.spring.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -10,9 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cerveceroscodigo.spring.dao.Authority;
-import com.cerveceroscodigo.spring.dao.Cart;
 import com.cerveceroscodigo.spring.dao.Customer;
 import com.cerveceroscodigo.spring.dao.Post;
 import com.cerveceroscodigo.spring.dao.User;
@@ -93,10 +94,16 @@ public class CustomerController {
 		return "displaycustomer";
 	}
 	
-	@RequestMapping("/showaccount")
-	public String showAccount(Model model){
+	@RequestMapping(value="/showaccount", method=RequestMethod.GET)
+	public String showAccount(Model model, Principal principal){
+		String username = principal.getName();
+		Customer c = customers.getCustomerByUsername(username);
+		if(c != null){
+			model.addAttribute("customer", c);
+		}
 		return "showaccount";
 	}
+
 	
 	@RequestMapping("/editaccount")
 	public void editCustomer(Model model){
