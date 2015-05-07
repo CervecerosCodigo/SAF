@@ -3,11 +3,10 @@
 
 <div>
 	<hr>
-	Id for kundevogn: <b><c:out value="${cart.cartId}"></c:out></b>
+	Your basket id: <b><c:out value="${cart.cartId}"></c:out></b>
 	<%-- Antall varer i vogn: <c:out value="${cart.cartItems.size}"></c:out> --%>
-	<br> Antall varer i kundevogn: <b>
-		${fn:length(cart.cartItems)} </b> <br> <i>Kommer med en standard
-		vare fra start for debugging.</i><br> <br>
+	<br> Amount of items in basket: <b>${fn:length(cart.cartItems)}
+	</b>
 </div>
 
 
@@ -84,10 +83,7 @@
 </div> --%>
 
 <div>
-	<br>
 	<hr>
-	<p>Tester her å bruke hver enkle rad som en form, slik at man unngå
-		å pakka inn disse i en liste.</p>
 	<table>
 		<tr>
 			<td>Id</td>
@@ -104,17 +100,29 @@
 				<sf:form method="get"
 					action="${pageContext.request.contextPath}/addItemToCart"
 					commandName="item">
-					<td><input type="text" name="id" value="<c:out value="${item.id}"></c:out>"></td>
-					<td><input type="text" name="type" value="<c:out value="${item.type}"></c:out>"></td>
-					<td><input type="text" name="description" value="<c:out value="${item.description}"></c:out>"></td>
-					<td><input type="text" name="priceIn" value="<c:out value="${item.priceIn}"></c:out>"></td>
-					<td><input type="text" name="numInStock" value="<c:out value="${item.numInStock}"></c:out>"></td>
+					<td><input type="text" name="id"
+						value="<c:out value="${item.id}"></c:out>" readonly="true"></td>
+					<td><input type="text" name="type"
+						value="<c:out value="${item.type}"></c:out>" readonly="true"></td>
+					<td><input type="text" name="description"
+						value="<c:out value="${item.description}"></c:out>"
+						readonly="true"></td>
+					<td><input type="text" name="priceIn"
+						value="<c:out value="${item.priceIn}"></c:out>" readonly="true"></td>
+					<td><input type="text" name="numInStock"
+						value="<c:out value="${item.numInStock}"></c:out>" readonly="true"></td>
 					<td><input name="send" value="Add to card" type="submit"></td>
 				</sf:form>
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="${pageContext.request.contextPath}/showBasket">Go to basket</a> 
+	<sec:authorize access="hasRole('ROLE_USER')">
+		<a href="${pageContext.request.contextPath}/showBasket">Go to
+			basket</a>
+	</sec:authorize>
+	<sec:authorize access="!isAuthenticated()">
+		<h4>Please log in to view your basket.</h4>		
+	</sec:authorize>
 </div>
 
 <%@include file="footer.jsp"%>

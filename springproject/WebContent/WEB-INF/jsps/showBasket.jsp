@@ -23,7 +23,12 @@
 			<td><c:out value="${cart.totalPrice}"></c:out></td>
 		</tr>
 	</table>
-	<a href="${pageContext.request.contextPath}/checkout">Checkout</a>
+	<sec:authorize access="hasRole('ROLE_USER')">
+		<a href="${pageContext.request.contextPath}/checkout">Checkout</a>
+	</sec:authorize>
+	<sec:authorize access="!isAuthenticated()">
+		<h4>Please log in to continue to checkout.</h4>		
+	</sec:authorize>
 </div>
 
 
