@@ -27,7 +27,6 @@ public class AuthorityDao {
 	
 	public boolean exists(String epost){
 		Criteria crit = session().createCriteria(Authority.class);
-//		crit.add(Restrictions.eq("postNumber", postNr));
 		crit.add(Restrictions.idEq(epost));
 		Authority a = (Authority) crit.uniqueResult();
 		return a != null;
