@@ -46,11 +46,12 @@ public class ItemController {
 		return null;
 	}
 
-	@RequestMapping(value="/showItems", method = RequestMethod.GET)
-	public String showAllItems(Model model, @ModelAttribute Item item) {
+	@RequestMapping(value="/showItems")
+	public String showAllItems(Model model) {
 		List<Item> list = items.showAllItems();
 		if(list != null)
 			model.addAttribute("liste", list);
+		
 		if(cart == null){
 			System.out.println("Legger til en ny vogn");
 			cart = new Cart();
@@ -63,12 +64,28 @@ public class ItemController {
 			 * Her kan det i teorien komme kode som legger ting i kundevognen
 			 */
 			//cart.addToCart(new Item());
-			cart.addToCart(item);
-			
-			System.out.println("Content of the cart:");
-			System.out.println(cart.toString());
+//			cart.addToCart(item);
+//			
+//			System.out.println("Content of the cart:");
+//			System.out.println(cart.toString());
 		}
 		return "showItems";
+	}
+	
+	/*
+	 * Det var en bugg relatert til da brukeren går inn på produksiden på nytt som gjorde at det blir lagt inn 
+	 * en ny tom vare inn i kundevognen ettersom det blir kjørt add med en to GET variabel. 
+	 * Skal forsøke å løse dette med egen dedikert metode som skal kun brukes dersom det mottas GET. 
+	 */
+	@RequestMapping(value="addItemToCart", method = RequestMethod.GET)
+	public String addItemToCart(@ModelAttribute Item item){
+		
+		cart.addToCart(item);
+		
+		System.out.println("Content of the cart:");
+		System.out.println(cart.toString());
+		
+		return "redirect:/showItems";
 	}
 
 	@RequestMapping("deleteItem")

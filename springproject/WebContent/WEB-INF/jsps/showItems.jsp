@@ -102,7 +102,7 @@
 		<c:forEach var="item" items="${liste}">
 			<tr>
 				<sf:form method="get"
-					action="${pageContext.request.contextPath}/showItems"
+					action="${pageContext.request.contextPath}/addItemToCart"
 					commandName="item">
 					<td><input type="text" name="id" value="<c:out value="${item.id}"></c:out>"></td>
 					<td><input type="text" name="type" value="<c:out value="${item.type}"></c:out>"></td>
