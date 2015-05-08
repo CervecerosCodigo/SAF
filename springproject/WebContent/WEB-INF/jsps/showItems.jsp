@@ -84,7 +84,7 @@
 
 <div>
 	<hr>
-	<table>
+	<table id="produktvisning">
 		<tr>
 			<td>Id</td>
 			<td>Type</td>
@@ -100,11 +100,11 @@
 				<sf:form method="get"
 					action="${pageContext.request.contextPath}/addItemToCart"
 					commandName="item">
-					<td><input type="text" name="id"
+					<td><input type="text" name="id" style="width: 15px;"
 						value="<c:out value="${item.id}"></c:out>" readonly="true"></td>
 					<td><input type="text" name="type"
 						value="<c:out value="${item.type}"></c:out>" readonly="true"></td>
-					<td><input type="text" name="description"
+					<td><input type="text" name="description" style="width: 200px;"
 						value="<c:out value="${item.description}"></c:out>"
 						readonly="true"></td>
 					<td><input type="text" name="priceIn"
