@@ -1,6 +1,6 @@
 <%@include file="head.jsp"%>
 
-	<h2>Please fill in the form to register your user account</h2>
+	<h2 id="customerRegHeader">Please fill in the form to register your user account</h2>
 	<sf:form method="post" action="${pageContext.request.contextPath}/registercustomer" commandName="customer">
 		<table class="formtable">
 			<tr>
@@ -41,7 +41,7 @@
 			</tr>
 			<tr>
 			<td class="label"></td>
-			<td><input class="control" name="Register" type="submit"/></td>
+			<td><input id="customerRegSubmitKnapp" class="control" name="Register" type="submit"/></td>
 			</tr>
 		</table>
 		<div class="error">
