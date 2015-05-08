@@ -33,8 +33,8 @@ public class CustomerService {
 		return customerDao.deleteCustomer(id);
 	}
 	
-	public void updateCustomer(Customer customer){
-		customerDao.updateCustomer(customer);
+	public void updateCustomer(Customer customer, String orgUsername){
+		customerDao.updateCustomer(customer, orgUsername);
 	}
 	
 	public boolean exists(int id){

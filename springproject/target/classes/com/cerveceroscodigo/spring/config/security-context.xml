@@ -28,6 +28,7 @@
  		<security:intercept-url pattern="/registered" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/newitem" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/registereditem" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/confirmingOrder" access="hasRole('ROLE_USER')" />
 		
  		<security:intercept-url pattern="/showCustomers" access="hasRole('ROLE_ADMIN')" />
  		

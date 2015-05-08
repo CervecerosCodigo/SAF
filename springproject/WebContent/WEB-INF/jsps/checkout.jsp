@@ -52,7 +52,7 @@
 
 <h3>Payment details</h3>
 <div class="formtable">
-	<sf:form action="${pageContext.request.contextPath}/allDone"
+	<sf:form action="${pageContext.request.contextPath}/confirmingOrder"
 		method="POST" id="payment-form">
 		<div>
 			<label> <span>Card Number</span> <input type="text" size="20"

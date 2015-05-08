@@ -43,15 +43,9 @@ public class HomeController {
 //		OrderLines line = new OrderLines(item.getId(), order.getIdOrder(), item.getPriceIn(), 1);
 //
 //		
-////		item.addOrderLine(line);	//add
 //		order.addOrderLine(line);	//add
-////		customer.addOrder(order);	//add
-////		
-////		//itemService.updateItem(item);
 //		orderService.updateOrder(order);
-//		
-//		System.out.println(item);
-//		System.out.println(customer);
+		
 		
 		return "home";
 	}

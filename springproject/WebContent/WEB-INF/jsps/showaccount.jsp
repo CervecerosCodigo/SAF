@@ -8,6 +8,7 @@
 	<sf:form method="post" action="${pageContext.request.contextPath}/editaccount" commandName="customer">
 
 	<table class="formtable">
+			<sf:input type="text" path="idCustomer" name="idCustomer" hidden="true" />
 			<tr>
 				<td class="label">First name:</td>
 				<td><sf:input class="control" path="firstname" name="firstname" id="firstname" type="text" readonly="true" /><br><sf:errors path="firstname" cssClass="error"></sf:errors></td>
@@ -58,7 +59,36 @@
 			</c:if>  
 		</div>
 	</sf:form>		
+	
+	<c:if test="${fn:length(customer.orders) gt 0}">
+		<h3>Your order history</h3>
+		<table id="orderHistory" class="table">
+			<tr>
+				<th>Order ID</th>
+				<th>Order Date</th>
+				<th>Number of items</th>
+				<th>Total cost</th>
+			</tr>
+			<c:forEach var="order" items="${customer.orders}">
+				<tr>
+					<td><c:out value="${order.idOrder}"></c:out></td>
+					<td><fmt:formatDate value="${order.orderDate}"/></td>
+					<td><c:out value="${fn:length(order.orderLines)}"></c:out> </td>
+					<td>
+						<c:set var="sum" value="${0}"/>
+						<c:forEach step="1" var="line" items="${order.orderLines}"> 
+							<c:set var="sum" value="${sum + line.priceUnit}"/>
+						</c:forEach>
+						
+						<fmt:formatNumber value='${sum}' groupingUsed='true' /> 
+					</td>
+				</tr>
+			
+			</c:forEach>
+		</table>
+	</c:if>
 </sec:authorize>
+
 
 
 		

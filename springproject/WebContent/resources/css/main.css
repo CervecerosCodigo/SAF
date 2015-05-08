@@ -154,17 +154,19 @@ h2 {
 	cursor: pointer;
 }
 
-#customerTable {
+.table {
 	font-size: 11px;
 }
 
-#customerTable td {
+.table td {
 	width: 100px;
 }
 
-#customerTable th {
+.table th {
 	border-bottom: 2px solid black;
 	padding-bottom: 10px;
 }
 
-
+#orderHistory{
+	
+}
