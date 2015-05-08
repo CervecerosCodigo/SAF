@@ -1,10 +1,18 @@
 package com.cerveceroscodigo.spring.dao;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name="item")
@@ -27,17 +35,25 @@ public class Item {
 	@Column(name="num_instock")
 	private int numInStock;
 
-	public Item(String type, String description, double priceIn,
-			int numInStock, int changedBy) {
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="iditem")
+	private List<OrderLines> orderLines;
+
+	
+	public Item(int id, String type, String description, double priceIn,
+			int numInStock, List<OrderLines> orderLines) {
 		super();
-		
+		this.id = id;
 		this.type = type;
 		this.description = description;
 		this.priceIn = priceIn;
 		this.numInStock = numInStock;
+		this.orderLines = orderLines;
 	}
-
-	public Item() {
+	
+	public Item(){
+		
 	}
 
 	public int getId() {
@@ -80,13 +96,26 @@ public class Item {
 		this.numInStock = numInStock;
 	}
 
+	public List<OrderLines> getOrderLines() {
+		return orderLines;
+	}
+
+	public void setOrderLines(List<OrderLines> orderLines) {
+		this.orderLines = orderLines;
+	}
+
+	public void addOrderLine(OrderLines line){
+		orderLines.add(line);
+	}
+	
 	@Override
 	public String toString() {
 		return "Item [id=" + id + ", type=" + type + ", description="
 				+ description + ", priceIn=" + priceIn + ", numInStock="
-				+ numInStock + ", changedBy=" + "]";
+				+ numInStock + ", orderLines=" + orderLines + "]" +"\n";
 	}
-
+	
+	
 	
 
 }

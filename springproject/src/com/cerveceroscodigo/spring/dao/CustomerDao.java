@@ -2,6 +2,7 @@ package com.cerveceroscodigo.spring.dao;
 
 import java.util.List;
 
+import javax.persistence.criteria.Order;
 import javax.validation.Valid;
 
 import org.hibernate.Criteria;
@@ -93,6 +94,13 @@ public class CustomerDao {
 		crit.add(Restrictions.idEq(id));
 		Customer c = (Customer)crit.uniqueResult();
 		return c;		
+	}
+	
+	public List<Orders> getAllOrders(Customer customer){
+		Criteria crit = session().createCriteria(Orders.class);
+		crit.add(Restrictions.eq("idPerson", customer.getIdCustomer()));
+		List<Orders> list = crit.list();
+		return list;
 	}
 	
 }

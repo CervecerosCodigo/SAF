@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cerveceroscodigo.spring.dao.Customer;
 import com.cerveceroscodigo.spring.dao.CustomerDao;
+import com.cerveceroscodigo.spring.dao.Orders;
 
 @Service("customerService")
 public class CustomerService {
@@ -50,6 +51,10 @@ public class CustomerService {
 	
 	public Customer getCustomerByUsername(String email){
 		return customerDao.findCustomerByEmail(email);
+	}
+	
+	public List<Orders> getAllOrders(Customer customer){
+		return customerDao.getAllOrders(customer);
 	}
 }
 

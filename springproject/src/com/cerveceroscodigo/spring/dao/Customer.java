@@ -15,6 +15,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table(name="cust")
 public class Customer {
@@ -58,6 +61,7 @@ public class Customer {
 	@JoinColumn(name="post_number")
 	private Post post;
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="idperson")
 	private List<Orders> orders;
@@ -171,7 +175,9 @@ public class Customer {
 		this.password = password;
 	}
 
-
+	public void addOrder(Orders order){
+		orders.add(order);
+	}
 
 	@Override
 	public String toString() {

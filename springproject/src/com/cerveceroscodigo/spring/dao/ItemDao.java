@@ -41,4 +41,16 @@ public class ItemDao {
 		Item it = (Item)crit.uniqueResult();
 		return it != null;
 	}
+	
+	public Item getItemById(int id){
+		Criteria crit = session().createCriteria(Item.class);
+		crit.add(Restrictions.idEq(id));
+		Item it = (Item)crit.uniqueResult();
+		return it;
+	}
+	
+	public void updateItem(Item item){
+		session().update(item);
+	}
+	
 }

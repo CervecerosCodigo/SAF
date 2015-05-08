@@ -1,6 +1,7 @@
 package com.cerveceroscodigo.spring.controllers;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cerveceroscodigo.spring.dao.Customer;
 import com.cerveceroscodigo.spring.dao.Item;
-import com.cerveceroscodigo.spring.dao.Post;
+import com.cerveceroscodigo.spring.dao.OrderLines;
+import com.cerveceroscodigo.spring.dao.Orders;
 import com.cerveceroscodigo.spring.service.CustomerService;
 import com.cerveceroscodigo.spring.service.ItemService;
+import com.cerveceroscodigo.spring.service.OrdersService;
 import com.cerveceroscodigo.spring.service.PostService;
 
 @Controller
@@ -25,21 +28,31 @@ public class HomeController {
 	@Autowired
 	private CustomerService customerService;
 	
-	
+	@Autowired
+	private OrdersService orderService;
 	
 	@RequestMapping("/")
 	public String showHome(Model model){
 		
-//		List<Post> post = postService.showAllPost();
-//		model.addAttribute("post", post);
+//		Item item = itemService.getItemById(1);	//Get item
+//		Customer customer = customerService.getCustomerByUsername("demo@test.no");
 //		
-//		List<Item> items = itemService.showAllItems();
-//		model.addAttribute("items", items);
+//		Orders order = new Orders(customer.getIdCustomer(), new Date(), new ArrayList<>());
+//		orderService.createOrder(order);	//Oppretter order
+//
+//		OrderLines line = new OrderLines(item.getId(), order.getIdOrder(), item.getPriceIn(), 1);
+//
 //		
-//		Post p = new Post("1100", "Oslo");
-//		Customer c = new Customer("Anders", "Jacobsen", "Drammensveien 1", "", "90054600", "anders@online.no", "123468", p);
-//		customerService.createCustomer(c);
+////		item.addOrderLine(line);	//add
+//		order.addOrderLine(line);	//add
+////		customer.addOrder(order);	//add
+////		
+////		//itemService.updateItem(item);
+//		orderService.updateOrder(order);
 //		
+//		System.out.println(item);
+//		System.out.println(customer);
+		
 		return "home";
 	}
 
