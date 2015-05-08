@@ -7,34 +7,28 @@
 
 	<security:authentication-manager>
 		
+
  	<security:authentication-provider>
-		<security:user-service>
-			<security:user name="admin" authorities="ROLE_ADMIN"
-				password="letmein" />
-			<security:user name="customer" authorities="ROLE_CUSTOMER"
-				password="letmein" />
-		</security:user-service>
-	</security:authentication-provider>
+		<security:jdbc-user-service data-source-ref="dataSource" 
+			authorities-by-username-query="SELECT username, authority FROM authorities WHERE username = ?"
+            users-by-username-query="SELECT username, password, enabled FROM users WHERE username = ?"></security:jdbc-user-service>
+ 	</security:authentication-provider>
 	
-	
- 	<security:authentication-provider>
-		<security:jdbc-user-service data-source-ref="dataSource" />
-	</security:authentication-provider>
-	
-	
-	
+
 	</security:authentication-manager>
 
 
-	<security:http use-expressions="true">
+	<security:http auto-config="true" use-expressions="true">
  		
  		<!--URL'ene nedenfor er bare tilgjengelig for de som er pålogget/autentisert  -->
- 		<security:intercept-url pattern="/account" access="hasRole('ROLE_CUSTOMER')" />
- 		<security:intercept-url pattern="/showAccount" access="isAuthenticated()" />
- 		<security:intercept-url pattern="/editAccount" access="hasRole('ROLE_CUSTOMER')" />
- 		<security:intercept-url pattern="/orderHistory" access="hasRole('ROLE_CUSTOMER')" />
- 		<security:intercept-url pattern="/registered" access="hasRole('ROLE_CUSTOMER')" />
-
+ 		<security:intercept-url pattern="/account" access="hasRole('ROLE_USER')" />
+ 		<security:intercept-url pattern="/showaccount" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" />
+ 		<security:intercept-url pattern="/editAccount" access="hasRole('ROLE_USER')" />
+ 		<security:intercept-url pattern="/orderHistory" access="hasRole('isAuthenticated()')" />
+ 		<security:intercept-url pattern="/registered" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/newitem" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/registereditem" access="hasRole('ROLE_ADMIN')" />
+		
  		<security:intercept-url pattern="/showCustomers" access="hasRole('ROLE_ADMIN')" />
  		
  		<!--URL'ene nedenfor vil være tilgjengelig for alle, uten pålogging  -->
@@ -45,17 +39,17 @@
 		<security:intercept-url pattern="/denied" access="permitAll" />
 		<security:intercept-url pattern="/error" access="permitAll" />
 		<security:intercept-url pattern="/logout" access="permitAll" />
-
 		<security:intercept-url pattern="/displayUserRegistration" access="permitAll" />
 		<security:intercept-url pattern="/registerCustomer" access="permitAll" />
 		<security:intercept-url pattern="/showItems" access="permitAll" />
-		<security:intercept-url pattern="/registerItem" access="permitAll" />
-		<security:intercept-url pattern="/registeredItem" access="permitAll" />
-		<security:intercept-url pattern="/showItems" access="permitAll" />
+		<security:intercept-url pattern="/addItemToCart" access="permitAll" />
+		<security:intercept-url pattern="/showBasket" access="permitAll" />
+		<security:intercept-url pattern="/checkout" access="permitAll" />
+		<security:intercept-url pattern="/allDone" access="permitAll" />
 
 
 		<!--Alt annet er denied -->
-		<security:intercept-url pattern="/**" access="denyAll" />
+		<!-- <security:intercept-url pattern="/**" access="denyAll" /> -->
 
 
 		<!--loginfunksjonalitet  -->

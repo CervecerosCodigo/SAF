@@ -32,16 +32,24 @@ public class CustomerService {
 		return customerDao.deleteCustomer(id);
 	}
 	
-	public boolean updateCustomer(Customer customer){
-		return customerDao.updateCustomer(customer);
+	public void updateCustomer(Customer customer){
+		customerDao.updateCustomer(customer);
 	}
 	
 	public boolean exists(int id){
 		return customerDao.exists(id);
 	}
 	
+	public boolean exists(String email){
+		return customerDao.exists(email);
+	}
 	
 	public Customer getCustomerById(int id){
 		return customerDao.getCustomer(id);
 	}
+	
+	public Customer getCustomerByUsername(String email){
+		return customerDao.findCustomerByEmail(email);
+	}
 }
+

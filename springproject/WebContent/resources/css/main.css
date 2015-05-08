@@ -61,6 +61,10 @@ body {
 	font-weight: bold;
 }
 
+#logoutform a {
+	margin-left: 0px !important;
+}
+
 footer {
 	width: 854px;
 	margin-bottom: 10px;
@@ -68,12 +72,37 @@ footer {
 	text-align: center;
 }
 
-/*---------------------------------*/
 .formtable {
 	width: 500px;
 	padding: 10px;
-	border: 1px solid blue;
+	margin-left: 50px;
 }
+
+#customer input {
+	border-radius: 3px;
+	background-color: #f1f1f1;
+	border-shadow: none;
+	border: none;
+	height: 32px;
+	width: 300px;
+	margin-bottom: 10px;
+	font-size: 13px;
+}
+
+#customerRegHeader {
+	margin-left: 60px;
+}
+
+#customerRegSubmitKnapp {
+	width: 100px !important;
+	float: right;
+	margin-right: 46px;
+	background-color: rgb(108, 161, 255) !important;
+	color: white;
+	font-weight: bold;
+	font-size: 12px;
+}
+
 
 .label {
 	text-allign: right;
@@ -100,3 +129,4 @@ footer {
 	border-bottom: 1px solid #444;
 	cursor: pointer;
 }
+

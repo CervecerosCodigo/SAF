@@ -23,4 +23,8 @@ public class UserService {
 	public boolean exists(String epost){
 		return userDao.exists(epost);
 	}
+	
+	public void updateUser(User u){
+		userDao.updateUser(u);
+	}
 }
