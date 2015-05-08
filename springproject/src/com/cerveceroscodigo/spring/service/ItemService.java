@@ -31,4 +31,11 @@ public class ItemService {
 		return itemDao.exists(id);
 	}
 	
+	public Item getItemById(int id){
+		return itemDao.getItemById(id);
+	}
+	
+	public void updateItem(Item item){
+		itemDao.updateItem(item);
+	}
 }
