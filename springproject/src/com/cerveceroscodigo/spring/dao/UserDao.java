@@ -32,7 +32,7 @@ public class UserDao {
 		return u != null;
 	}
 	
-	public void updateUser(User u){
+	public void updateUser(User u, String orgUsername){
 		session().update(u);
 	}
 }

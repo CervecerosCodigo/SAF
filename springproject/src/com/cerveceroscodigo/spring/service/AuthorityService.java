@@ -27,7 +27,7 @@ public class AuthorityService {
 		return authorityDao.exists(epost);
 	}
 	
-	public void updateAuthority(Authority a){
-		authorityDao.updateAuthority(a);
+	public void updateAuthority(Authority a, String orgUsername){
+		authorityDao.updateAuthority(a, orgUsername);
 	}
 }

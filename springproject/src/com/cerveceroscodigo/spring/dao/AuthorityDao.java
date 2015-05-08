@@ -32,7 +32,16 @@ public class AuthorityDao {
 		return a != null;
 	}
 	
-	public void updateAuthority(Authority a){
+	public void updateAuthority(Authority a, String orgUsername){
+		
 		session().update(a);
 	}
+	
+	public Authority findAuthorityByEmail(String email){
+		Criteria crit = session().createCriteria(Authority.class);
+		crit.add(Restrictions.idEq(email));
+		Authority a = (Authority)crit.uniqueResult();
+		return a;
+	}
+	
 }

@@ -62,12 +62,13 @@ public class CustomerDao {
 	 * the same id as the one in the database. Otherwise the update will be an insert..
 	 * @param customer
 	 */
-	public void updateCustomer(Customer customer){
-		Customer orgCust = findCustomerByEmail(customer.getEmail());
+	public void updateCustomer(Customer customer, String orgUsername){
+		Customer orgCust = findCustomerByEmail(orgUsername);
 		if(orgCust != null){
 			int orgCustId = orgCust.getIdCustomer();
 			customer.setIdCustomer(orgCustId);
 			session().merge(customer);
+			
 		}
 	}
 	
@@ -90,7 +91,7 @@ public class CustomerDao {
 	
 	//Helper method, returning Customer object if found by id
 	public Customer findCustomerById(int id){
-		Criteria crit = session().createCriteria(Item.class);
+		Criteria crit = session().createCriteria(Customer.class);
 		crit.add(Restrictions.idEq(id));
 		Customer c = (Customer)crit.uniqueResult();
 		return c;		

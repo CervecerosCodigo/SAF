@@ -24,7 +24,7 @@ public class UserService {
 		return userDao.exists(epost);
 	}
 	
-	public void updateUser(User u){
-		userDao.updateUser(u);
+	public void updateUser(User u, String orgUsername){
+		userDao.updateUser(u, orgUsername);
 	}
 }

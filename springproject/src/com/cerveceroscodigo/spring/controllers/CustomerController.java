@@ -1,6 +1,8 @@
 package com.cerveceroscodigo.spring.controllers;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,20 +14,28 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cerveceroscodigo.spring.dao.Authority;
 import com.cerveceroscodigo.spring.dao.Cart;
 import com.cerveceroscodigo.spring.dao.Customer;
+import com.cerveceroscodigo.spring.dao.Item;
+import com.cerveceroscodigo.spring.dao.OrderLines;
+import com.cerveceroscodigo.spring.dao.Orders;
 import com.cerveceroscodigo.spring.dao.Post;
 import com.cerveceroscodigo.spring.dao.User;
 import com.cerveceroscodigo.spring.service.AuthorityService;
 import com.cerveceroscodigo.spring.service.CustomerService;
+import com.cerveceroscodigo.spring.service.ItemService;
+import com.cerveceroscodigo.spring.service.OrdersService;
 import com.cerveceroscodigo.spring.service.UserService;
 
 @Controller
 public class CustomerController {
 
+	@Autowired
+	private ItemService itemService;
+	@Autowired
+	private OrdersService orderService;
 	@Autowired
 	CustomerService customers;
 	@Autowired
@@ -34,7 +44,6 @@ public class CustomerController {
 	UserService users;
 	
 	Cart cart;
-	
 	
 	/**
 	 * Denne metoden viser registreringssiden for der kunden kan registrere seg.
@@ -75,20 +84,26 @@ public class CustomerController {
 			Authority auth = generateAuthorityFromCustomer(customer);
 			User user = generateUserFromCustomer(customer);
 
-			
-			if(!authorities.exists(auth.getUsername()))
-				authorities.create(auth);
-			
-			if(!users.exists(user.getUsername()))
-				users.create(user);
-			
-			if(customers.createCustomer(customer)){
-				return "registered";	
+			try{
+				if(!authorities.exists(auth.getUsername())){
+					authorities.create(auth);
+					throw new CustomErrorException("The username is already accociated with a role");
+				}
+				if(!users.exists(user.getUsername())){
+					users.create(user);
+					throw new CustomErrorException("The username exists");
+				}
+				if(customers.createCustomer(customer)){
+					return "registered";	
+				}
+			}catch(CustomErrorException e){
+				model.addAttribute("exists", e.getMessage());
 			}
 		}
 		//Errors in validation has occured. Returning to registration form
 		return "registercustomer";
 	}
+	
 	
 	@RequestMapping(value="/findcustomer")
 	public String getCustomerByUsername(Model model, String username){
@@ -108,6 +123,7 @@ public class CustomerController {
 		return "showaccount";
 	}
 	
+	
 	@RequestMapping(value="/checkout")
 	public String checkoutCart(Model model, HttpSession session, Principal principal){
 		String username = principal.getName();
@@ -123,10 +139,33 @@ public class CustomerController {
 	}
 
 	
+	@RequestMapping(value="/confirmingOrder")
+	public String confirmingOrder(Model model, HttpSession session, Principal principal){
+		
+		String username = principal.getName();
+		Customer customer = customers.getCustomerByUsername(username);
+		Orders order = new Orders(customer.getIdCustomer(), new Date(), new ArrayList<>());
+		orderService.createOrder(order);	//Oppretter order
+
+		Cart c = (Cart)session.getAttribute("cart");
+		List<Item>list = c.getCartItems();
+		for(Item item : list){
+			OrderLines line = new OrderLines(item.getId(), order.getIdOrder(), item.getPriceIn(), 1);
+			order.addOrderLine(line);	//add
+		}
+		
+		orderService.updateOrder(order);
+		
+		return "allDone";
+	}
+	
+	
 	@RequestMapping(value="/editaccount", method=RequestMethod.POST)
-	public String editCustomer(Model model, @Valid Customer customer, BindingResult result ){
+	public String editCustomer(Model model, @Valid Customer customer, BindingResult result, Principal principal){
+		String loggedOn = principal.getName();
+
 		if(!result.hasErrors()){
-			customers.updateCustomer(customer);
+			customers.updateCustomer(customer, loggedOn);
 			
 			Authority auth = generateAuthorityFromCustomer(customer);
 			User user = generateUserFromCustomer(customer);
@@ -134,8 +173,8 @@ public class CustomerController {
 			/**
 			 * The following two doesn't work with email update.!!
 			 * **/
-			authorities.updateAuthority(auth);
-			users.updateUser(user);
+			authorities.updateAuthority(auth, loggedOn);
+			users.updateUser(user, loggedOn);
 			
 		}
 		return "showaccount";

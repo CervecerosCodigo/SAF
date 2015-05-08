@@ -2,7 +2,7 @@
 <%@include file="head.jsp"%>
 
 <h2>All the registered customers</h2>
-<table id="customerTable">
+<table id="customerTable" class="table">
 
 	<tr>
 		<th>First name</th>
