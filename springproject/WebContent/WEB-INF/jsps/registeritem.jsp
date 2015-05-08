@@ -1,10 +1,8 @@
 <%@include file="head.jsp"%>
 
 	<h2>Registration</h2>
-	<br>
-	<h3>New store item</h3>
 	
-	<sf:form method="post" action="${pageContext.request.contextPath}/newitem" commandName="item">
+	<sf:form id="item" method="post" action="${pageContext.request.contextPath}/newitem" commandName="item">
 		<table class="formtable">
 			<tr>
 				<td class="label">Item type:</td>
@@ -24,7 +22,7 @@
 			</tr>
 			<tr>
 				<td class="label"></td>
-				<td><input class="control" name="Save" type="submit"/></td>
+				<td><input id="itemSubmitKnapp" class="control" name="Save" type="submit"/></td>
 			</tr>
 		</table>
 	</sf:form>
