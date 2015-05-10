@@ -44,6 +44,7 @@ public class CustomerController {
 	@Autowired
 	UserService users;
 	
+	Cart cart;
 	
 	
 	/**
@@ -148,7 +149,7 @@ public class CustomerController {
 		Orders order = new Orders(customer.getIdCustomer(), new Date(), new ArrayList<>());
 		orderService.createOrder(order);	//Oppretter order
 
-		Cart c = (Cart)session.getAttribute("cart");
+		Cart c = (Cart) session.getAttribute("cart");
 		List<Item>list = c.getCartItems();
 		for(Item item : list){
 			OrderLines line = new OrderLines(item.getId(), order.getIdOrder(), item.getPriceIn(), 1);

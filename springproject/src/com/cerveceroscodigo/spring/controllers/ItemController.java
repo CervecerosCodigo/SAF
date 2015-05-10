@@ -2,6 +2,7 @@ package com.cerveceroscodigo.spring.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +48,11 @@ public class ItemController {
 	}
 
 	@RequestMapping(value="/showItems")
-	public String showAllItems(Model model, HttpSession session) {
+	public String showAllItems(Model model, HttpSession session, HttpServletRequest request) {
 		session.setMaxInactiveInterval(60*15); //setter session valid til 15 min
+		session.invalidate();
+		session = request.getSession();
+		
 		List<Item> list = items.showAllItems();
 		if(list != null)
 			model.addAttribute("liste", list);
@@ -57,9 +61,11 @@ public class ItemController {
 			System.out.println("Legger til en ny vogn");
 			cart = new Cart();
 			session.setAttribute("cart", cart);
-			model.addAttribute("cart", cart);
-		}else{
-			model.addAttribute("cart", cart);
+//			model.addAttribute("cart", cart);
+		}
+		else{
+			session.setAttribute("cart", cart);
+//			model.addAttribute("cart", cart);
 			System.out.println("Det finnes en kundevogn fra før.");
 		}
 		return "showItems";
@@ -73,8 +79,8 @@ public class ItemController {
 	@RequestMapping(value="addItemToCart", method = RequestMethod.GET)
 	public String addItemToCart(@ModelAttribute Item item){
 		
-		cart.addToCart(item);
 		
+		cart.addToCart(item);
 		
 		System.out.println("Content of the cart:");
 		System.out.println(cart.toString());
