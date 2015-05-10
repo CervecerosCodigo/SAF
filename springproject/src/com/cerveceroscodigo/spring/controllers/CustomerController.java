@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.cerveceroscodigo.spring.dao.Authority;
 import com.cerveceroscodigo.spring.dao.Cart;
@@ -140,7 +141,7 @@ public class CustomerController {
 
 	
 	@RequestMapping(value="/confirmingOrder")
-	public String confirmingOrder(Model model, HttpSession session, Principal principal){
+	public String confirmingOrder(Model model, HttpSession session, Principal principal, SessionStatus status){
 		
 		String username = principal.getName();
 		Customer customer = customers.getCustomerByUsername(username);
@@ -155,6 +156,11 @@ public class CustomerController {
 		}
 		
 		orderService.updateOrder(order);
+		
+		
+		//Nå kan kurve tømmes for gjenbruk i samme session
+		c.removeAllCartItems();
+		
 		
 		return "allDone";
 	}

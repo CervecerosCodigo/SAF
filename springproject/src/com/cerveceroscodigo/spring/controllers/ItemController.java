@@ -48,6 +48,7 @@ public class ItemController {
 
 	@RequestMapping(value="/showItems")
 	public String showAllItems(Model model, HttpSession session) {
+		session.setMaxInactiveInterval(60*15); //setter session valid til 15 min
 		List<Item> list = items.showAllItems();
 		if(list != null)
 			model.addAttribute("liste", list);
