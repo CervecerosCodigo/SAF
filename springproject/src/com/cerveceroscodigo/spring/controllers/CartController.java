@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.cerveceroscodigo.spring.dao.Cart;
 
@@ -25,8 +26,11 @@ public class CartController {
 	}
 
 	@RequestMapping(value = "/allDone")
-	public String displayAllDone() {
-
+	public String displayAllDone(SessionStatus status, HttpSession session) {
+		
+		session.invalidate();
+		status.setComplete();
+		
 		return "allDone";
 	}
 
