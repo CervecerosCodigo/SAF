@@ -20,7 +20,7 @@ and other obstacles made us reevaluate several times how much working functional
 <br>
 <h4>For demonstration purposes</h4>
 <p>When reviewing this project please do so by using the hosted version, available at 
-	<a href="http://45.55.190.119/:8080/springproject/">Hosted Project</a> that is hosted on Digital Ocean on a Fedora server running 
+	<a href="http://46.101.27.38//:8080/springproject/">Hosted Project</a> that is hosted on Digital Ocean on a Fedora server running 
 	Apache Tomcat and MySql.</p>
 <p>Specific information on how to set up Tomcat on a computer, and configure it to use the database will be provided through Fronter.</p>
 <p>The project will be distributed using a WAR-file.</p>	
