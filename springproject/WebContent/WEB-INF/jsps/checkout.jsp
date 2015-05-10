@@ -1,10 +1,10 @@
 <%@include file="head.jsp"%>
 
 
-<h2>Your order</h2>
+<!-- <h2>Please verify you account details</h2> -->
 
 
-<h3>Shipping adress</h3>
+<h3>Shipping address</h3>
 <sec:authorize access="hasRole('ROLE_USER')">
 	<table class="formtable">
 		<tr>
