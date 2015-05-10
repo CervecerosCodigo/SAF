@@ -43,7 +43,7 @@ public class CustomerController {
 	@Autowired
 	UserService users;
 	
-	Cart cart;
+	
 	
 	/**
 	 * Denne metoden viser registreringssiden for der kunden kan registrere seg.
@@ -129,7 +129,7 @@ public class CustomerController {
 		String username = principal.getName();
 		Customer c = customers.getCustomerByUsername(username);
 		
-		cart = (Cart) session.getAttribute("cart");
+		Cart cart = (Cart) session.getAttribute("cart");
 		
 		if(c != null){
 			model.addAttribute("customer", c);

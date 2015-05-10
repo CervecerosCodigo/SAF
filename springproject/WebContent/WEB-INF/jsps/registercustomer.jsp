@@ -41,7 +41,7 @@
 			</tr>
 			<tr>
 			<td class="label"></td>
-			<td><input id="customerRegSubmitKnapp" class="control" name="Register" type="submit"/></td>
+			<td><input class="submitKnapp control" name="Register" type="submit"/></td>
 			</tr>
 		</table>
 		<div class="error">
