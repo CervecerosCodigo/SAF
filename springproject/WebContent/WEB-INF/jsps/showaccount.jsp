@@ -1,7 +1,7 @@
 
 <%@include file="head.jsp"%>
 	
-<h2>Displaying you account,  <c:out value="${customer.firstname}"/> <c:out value="${customer.lastname}"/></h2>
+<h2>Displaying your account,  <c:out value="${customer.firstname}"/> <c:out value="${customer.lastname}"/></h2>
 
 <sec:authorize access="hasRole('ROLE_USER')">	
 
@@ -59,9 +59,12 @@
 			</c:if>  
 		</div>
 	</sf:form>		
-	
+	<br/>
+	<br/>
+	<hr>
 	<c:if test="${fn:length(customer.orders) gt 0}">
 		<h3>Your order history</h3>
+		<hr>
 		<table id="orderHistory" class="table">
 			<tr>
 				<th>Order ID</th>
@@ -70,11 +73,11 @@
 				<th>Total cost</th>
 			</tr>
 			<c:forEach var="order" items="${customer.orders}">
-				<tr>
-					<td><c:out value="${order.idOrder}"></c:out></td>
-					<td><fmt:formatDate value="${order.orderDate}"/></td>
-					<td><c:out value="${fn:length(order.orderLines)}"></c:out> </td>
-					<td>
+				<tr class="cellUnderline">
+					<td class="produktText"><c:out value="${order.idOrder}"></c:out></td>
+					<td class="produktText"><fmt:formatDate value="${order.orderDate}"/></td>
+					<td class="produktText"><c:out value="${fn:length(order.orderLines)}"></c:out> </td>
+					<td class="produktText">
 						<c:set var="sum" value="${0}"/>
 						<c:forEach step="1" var="line" items="${order.orderLines}"> 
 							<c:set var="sum" value="${sum + line.priceUnit}"/>

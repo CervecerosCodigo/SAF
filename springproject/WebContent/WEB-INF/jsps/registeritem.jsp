@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td class="label"></td>
-				<td><input id="itemSubmitKnapp" class="control" name="Save" type="submit"/></td>
+				<td><input class="submitKnapp control" name="Save" type="submit"/></td>
 			</tr>
 		</table>
 	</sf:form>
