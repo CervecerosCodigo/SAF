@@ -1,5 +1,6 @@
 package com.cerveceroscodigo.spring.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +22,9 @@ import com.cerveceroscodigo.spring.service.ItemService;
 public class ItemController {
 
 	@Autowired
-	ItemService items;
-	Cart cart;
-
+	private ItemService items;
+	private Cart cart;
+	private String loggedOn;
 
 	@RequestMapping(value="/newitem", method = RequestMethod.GET)
 	public String displayItemRegistration(Model model) {
@@ -35,39 +36,28 @@ public class ItemController {
 	@RequestMapping(value="/newitem", method = RequestMethod.POST)
 	public String createItem(Model model, Item item, BindingResult result) {
 		if (!result.hasErrors()) {
-			items.create(item); //@TODO: Denne må endres til at den returnerer boole
+			items.create(item); //@TODO: Denne må endres til at den returnerer boolean
 			return "registereditem"; // ref to page if registered
 		}
 		return "registeritem"; // ref to the regsitering page
 	}
 
 	
-	@RequestMapping("displayItem")
-	public Item displayItem(Model model) {
-		return null;
-	}
-
 	@RequestMapping(value="/showItems")
-	public String showAllItems(Model model, HttpSession session, HttpServletRequest request) {
+	public String showAllItems(Model model, HttpSession session, Principal principal) {
 		session.setMaxInactiveInterval(60*15); //setter session valid til 15 min
-		session.invalidate();
-		session = request.getSession();
 		
+		if(loggedOn == null){
+			System.out.println("Legger til en ny vogn");
+			cart = new Cart();
+			session.setAttribute("cart", cart);
+		}
+		
+		loggedOn = principal.getName();
 		List<Item> list = items.showAllItems();
 		if(list != null)
 			model.addAttribute("liste", list);
 		
-		if(cart == null){
-			System.out.println("Legger til en ny vogn");
-			cart = new Cart();
-			session.setAttribute("cart", cart);
-//			model.addAttribute("cart", cart);
-		}
-		else{
-			session.setAttribute("cart", cart);
-//			model.addAttribute("cart", cart);
-			System.out.println("Det finnes en kundevogn fra før.");
-		}
 		return "showItems";
 	}
 	
@@ -88,8 +78,12 @@ public class ItemController {
 		return "redirect:/showItems";
 	}
 
-	@RequestMapping("deleteItem")
-	public void deleteItem(Model model) {
 
+	public void deleteCart(){
+		cart = null;
+	}
+	
+	public void resetLoggedOn(){
+		loggedOn = null;
 	}
 }
