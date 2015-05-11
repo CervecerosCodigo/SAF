@@ -2,25 +2,20 @@ package com.cerveceroscodigo.spring.controllers;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.cerveceroscodigo.spring.dao.Cart;
-
 @Controller
 public class CartController {
 
-	// @Autowired
-	Cart cart;
+	@Autowired
+	ItemController itemController;
 
 	@RequestMapping(value = "/showBasket")
-	public String displayCartContents(Model model, HttpSession session) {
-
-		cart = (Cart) session.getAttribute("cart");
-
-		model.addAttribute("cart", cart);
+	public String displayCartContents(Model model) {
 
 		return "showBasket";
 	}
@@ -30,7 +25,9 @@ public class CartController {
 		
 		session.invalidate();
 		status.setComplete();
-		
+		itemController.deleteCart();
+		itemController.resetLoggedOn();
+		//session.setAttribute("cart", null);
 		return "allDone";
 	}
 

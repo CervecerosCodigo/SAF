@@ -38,13 +38,12 @@ public class CustomerController {
 	@Autowired
 	private OrdersService orderService;
 	@Autowired
-	CustomerService customers;
+	private CustomerService customers;
 	@Autowired
-	AuthorityService authorities;
+	private AuthorityService authorities;
 	@Autowired
-	UserService users;
+	private UserService users;
 	
-	Cart cart;
 	
 	
 	/**
@@ -131,7 +130,7 @@ public class CustomerController {
 		String username = principal.getName();
 		Customer c = customers.getCustomerByUsername(username);
 		
-		Cart cart = (Cart) session.getAttribute("cart");
+		//Cart cart = (Cart) session.getAttribute("cart");
 		
 		if(c != null){
 			model.addAttribute("customer", c);
@@ -216,4 +215,6 @@ public class CustomerController {
 		user.setEnabled(1);
 		return user;
 	}
+	
+
 }
