@@ -52,8 +52,8 @@ public class ItemController {
 			cart = new Cart();
 			session.setAttribute("cart", cart);
 		}
-		
-		loggedOn = principal.getName();
+		if(principal != null)
+			loggedOn = principal.getName();
 		List<Item> list = items.showAllItems();
 		if(list != null)
 			model.addAttribute("liste", list);
